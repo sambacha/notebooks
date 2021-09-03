@@ -1,0 +1,219 @@
+{| class="wikitable sortable"
+! 1 !! Hex Value !! Instruction Name !! Removes from Stack !! Pushes to Stack !! Description !! Pseudocode !!  !!  !!  !!  !!  !!  !!  !!  !!  !!  !!  !!  !!  !!  !! 
+|-
+| 2 || 0s: Stop and Arithmetic OperationsAll arithmetic is modulo 2**256 unless otherwise noted. The zero-th power of zero 0**0 is defined to be one. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 3 || 0x00 || STOP || 0 || 0 || Halts execution. || --- ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 4 || 0x01 || ADD || 2 || 1 || Addition operation. || a || b = stack.pop(2)stack.push(a + b) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 5 || 0x02 || MUL || 2 || 1 || Multiplication operation. || a || b = stack.pop(2)stack.push(a * b) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 6 || 0x03 || SUB || 2 || 1 || Subtraction operation. || a || b = stack.pop(2)stack.push(a - b) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 7 || 0x04 || DIV || 2 || 1 || Integer division operation. || a || b = stack.pop(2)b ==  0 ? stack.push(0) : stack.push(a / b) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 8 || 0x05 || SDIV || 2 || 1 || Signed integer division operation (truncated). || a || b = stack.pop(2)if b == 0:    stack.push(0)elif a == -2**255 && b == -1:    stack.push(-2**255)else:    s = floor(abs(a / b))    stack.push(sgn(a/b) * s) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 9 || 0x06 || MOD || 2 || 1 || Modulo remainder operation. || a || b = stack.pop(2)b == 0 ? stack.push(0) : stack.push(a % b) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 10 || 0x07 || SMOD || 2 || 1 || Signed modulo remainder operation. || a || b = stack.pop(2)if b == 0:    stack.push(0)else:    stack.push(sgn(a) * (abs(a) % abs(b)) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 11 || 0x08 || ADDMOD || 3 || 1 || Modulo addition operation. || a || b || c = stack.pop(3)c == 0 ? stack.push(0) : stack.push((a + b) % c) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 12 || 0x09 || MULMOD || 3 || 1 || Modulo multiplication operation. || a || b || c = stack.pop(3)c == 0 ? stack.push(0) : stack.push((a * b) % c) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 13 || 0x0A || EXP || 2 || 1 || Exponential operation. || a || b = stack.pop(2)stack.push(a**b) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 14 || 0x0B || SIGNEXTEND || 2 || 1 || Extend length of two’s complement signed integer. || a || b = stack.pop(2)stack.push(extend_sign(a || b)) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 15 || 10s: Comparison & Bitwise Logic Operations ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 16 || 0x10 || LT || 2 || 1 || Less-than comparison. || a || b = stack.pop(2)c = a < b ? 1 : 0stack.push(c) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 17 || 0x11 || GT || 2 || 1 || Greater-than comparison. || a || b = stack.pop(2)c = a > b ? 1 : 0stack.push(c) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 18 || 0x12 || SLT || 2 || 1 || Signed less-than comparison. || a || b = stack.pop(2)c = a < b ? 1 : 0stack.push(c) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 19 || 0x13 || SGT || 2 || 1 || Signed greater-than comparison. || a || b = stack.pop(2)c = a > b ? 1 : 0stack.push(c) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 20 || 0x14 || EQ || 2 || 1 || Equality comparison. || a || b = stack.pop(2)c = a == b ? 1 : 0stack.push(c) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 21 || 0x15 || ISZERO || 1 || 1 || Simple not operator. || a = stack.pop()c = a == 0 ? 1 : 0stack.push(c) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 22 || 0x16 || AND || 2 || 1 || Bitwise AND operation. || a || b = stack.pop(2)stack.push(a & b) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 23 || 0x17 || OR || 2 || 1 || Bitwise OR operation. || a || b = stack.pop(2)stack.push(a | b) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 24 || 0x18 || XOR || 2 || 1 || Bitwise XOR operation. || a || b = stack.pop(2)stack.push(a ^ b) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 25 || 0x19 || NOT || 1 || 1 || Bitwise NOT operation. || a = stack.pop()stack.push(~a) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 26 || 0x1A || BYTE || 2 || 1 || Retrieve single byte from word. || n || v = stack.pop(2)byte = get_byte(v || n) # returns n'th byte from bstack.push(byte) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 27 || 0x1B || SHL || 2 || 1 || Left shift operation. || to_shift || val = stack.pop(2)stack.push(val << to_shift) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 28 || 0x1C || SHR || 2 || 1 || Logical right shift operation. || to_shift || val = stack.pop(2)stack.push(val >> to_shift) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 29 || 0x1D || SAR || 2 || 1 || Arithmetic (signed) right shift operation. || to_shift || val = stack.pop(2)stack.push(val >> uint(to_shift)) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 30 || 20s: SHA3 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 31 || 0x20 || SHA3 || 2 || 1 || Compute Keccak-256 hash. || a || b = stack.pop(2)KEC = sha3(a || b)stack.push(KEC) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 32 || 30s: Environmental Information ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 33 || 0x30 || ADDRESS || 0 || 1 || Get address of currently executing account. || address = exec_env.get_address()stack.push(address) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 34 || 0x31 || BALANCE || 1 || 1 || Get balance of the given account. || address = stack.pop()balance = STATE.get_balance(address)stack.push(balance) || readsstack dependant ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 35 || 0x32 || ORIGIN || 0 || 1 || Get execution origination address. || origin = exec_env.get_origin()stack.push(origin) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 36 || 0x33 || CALLER || 0 || 1 || Get caller address. || caller = exec_env.get_caller()stack.push(caller) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 37 || 0x34 || CALLVALUE || 0 || 1 || Get deposited value by the instruction/transaction responsible for this execution. || value = exec_env.get_value()stack.push(value) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 38 || 0x35 || CALLDATALOAD || 1 || 1 || Get input data of current environment. || offset = stack.pop()bytes = exec_env.input[offset:offset+32]stack.push(bytes.to_uint256()) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 39 || 0x36 || CALLDATASIZE || 0 || 1 || Get size of input data in current environment. || size = exec_env.input.size()stack.push(size) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 40 || 0x37 || CALLDATACOPY || 3 || 0 || Copy input data in current environment to memory. || mem_offset || data_offset || size = stack.pop(3)data = exec_env.input[data_offset:data_offset + size]memory[mem_offset:mem_offset + size] = data ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 41 || 0x38 || CODESIZE || 0 || 1 || Get size of code running in current environment. || code_size = exec_env.machine_code.size()stack.push(code_size) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 42 || 0x39 || CODECOPY || 3 || 0 || Copy code running in current environment to memory. || mem_offset || code_offset || size = stack.pop(3)code = exec_env.machine_code[code_offset:code_offset + size]memory[mem_offset:mem_offset + size] = code ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 43 || 0x3A || GASPRICE || 0 || 1 || Get price of gas in current environment. || price = exec_env.pricestack.push(price) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 44 || 0x3B || EXTCODESIZE || 1 || 1 || Get size of an account’s code. || address = stack.pop()code_size = STATE.get_code_size(address)stack.push(code_size) || readsstack dependant ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 45 || 0x3C || EXTCODECOPY || 4 || 0 || Copy an account’s code to memory. || address || mem_offset || code_offset || size = stack.pop(4)code = STATE.get_code(address)code_copy = code[code_offset:code_offset + size]memory[mem_offset:mem_offset + size] = code_copy || readsstack dependant ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 46 || 0x3D || RETURNDATASIZE || 0 || 1 || Get size of output data from the previous call from the current environment. || stack.push(return_data) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 47 || 0x3E || RETURNDATACOPY || 3 || 0 || Copy output data from the previous call to memory. || mem_offset || data_offset || size = stack.pop(3)data = return_data[data_offset:data_offset + size]memory[mem_offset:mem_offset + size] = data ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 48 || 0x3F || EXTCODEHASH || 1 || 1 || Get hash of an account’s code. || address = stack.pop()code_hash = STATE.get_code_hash(address)stack.push(code_hash) || readsstack dependant ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 49 || 40s: Block Information ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 50 || 0x40 || BLOCKHASH || 1 || 1 || Get the hash of one of the 256 most recent complete blocks. || a = stack.pop()number = block.numberresult = hash_func(number || a || 0)stack.push(result) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 51 || 0x41 || COINBASE || 0 || 1 || Get the current block’s beneficiary address. || coin_base = block.coin_basestack.push(coin_base) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 52 || 0x42 || TIMESTAMP || 0 || 1 || Get the current block’s timestamp. || timestamp = block.timestampstack.push(timestamp) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 53 || 0x43 || NUMBER || 0 || 1 || Get the current block’s number. || number = block.numberstack.push(number) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 54 || 0x44 || DIFFICULTY || 0 || 1 || Get the current block’s difficulty. || difficulty = block.difficultystack.push(difficulty) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 55 || 0x45 || GASLIMIT || 0 || 1 || Get the current block’s gas limit. || gas_limit = block.gas_limitstack.push(gas_limit) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 56 || 0x46 || CHAINID || 0 || 1 || Get the chain ID. || chain_id = exec_env.chain_info.idstack.push(chain_id) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 57 || 0x47 || SELFBALANCE || 0 || 1 || Get balance of currently executing account. || address = exec_env.get_address()balance = STATE.get_balance(address)stack.push(balance) || reads contract address ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 58 || 50s: Stack || Memory || Storage and Flow Operations ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 59 || 0x50 || POP || 1 || 0 || Remove item from stack. || stack.pop() ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 60 || 0x51 || MLOAD || 1 || 1 || Load word from memory. || offset = stack.pop()word = memory[offset:offset + 32] # byte arraystack.push(word.to_uint256()) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 61 || 0x52 || MSTORE || 2 || 0 || Save word to memory. || offset || value = stack.pop(2)memory[offset:offset+32] = value.to_bytes() ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 62 || 0x53 || MSTORE8 || 2 || 0 || Save byte to memory. || offset || value = stack.pop(2)memory[offset:offset+8] = value.to_bytes()[24:] ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 63 || 0x54 || SLOAD || 1 || 1 || Load word from storage. || idx = stack.pop()address = exec_env.get_address()storage = STATE.get_storage(address)stack.push(storage[idx]) || reads contract address ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 64 || 0x55 || SSTORE || 2 || 0 || Save word to storage. || idx || value = stack.pop(2)address = exec_env.get_address()storage = STATE.get_storage(address)storage[idx] = value || writes contract address ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 65 || 0x56 || JUMP || 1 || 0 || Alter the program counter. || position = stack.pop()pc = position ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 66 || 0x57 || JUMPI || 2 || 0 || Conditionally alter the program counter. || position || condition = stack.pop(2)pc = condition != 0 ? position : position + 1 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 67 || 0x58 || PC || 0 || 1 || Get the value of the program counter prior to the increment corresponding to this instruction. || stack.push(pc) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 68 || 0x59 || MSIZE || 0 || 1 || Get the size of active memory in bytes. || stack.push(memory.size()) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 69 || 0x5A || GAS || 0 || 1 || Get the amount of available gas || including the corresponding reduction for the cost of this instruction. || gas = contract.gasstack.push(gas) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 70 || 0x5B || JUMPDEST || 0 || 0 || Mark a valid destination for jumps.This operation has no effect on machine state during execution. || --- ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 71 || 60s & 70s: Push Operations ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 72 || 0x60 || PUSH1 || 0 || 1 || Place 1 byte item on stack. || code = exec_env.machine_codestart || end = pc + 1 || pc + 2stack.push(code[start:end])pc = end ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 73 || 0x61 || PUSH2 || 0 || 1 || Place 2-byte item on stack. || code = exec_env.machine_codestart || end = pc + 1 || pc + 3stack.push(code[start:end])pc = end ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 74 || ... || ... || ... || ... || ... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 75 || 0x7F || PUSH32 || 0 || 1 || Place 32-byte (full word) item on stack. || code = exec_env.machine_codestart || end = pc + 1 || pc + 33stack.push(code[start:end])pc = end ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 76 || 80s: Duplication Operations ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 77 || 0x80 || DUP1 || 1 || 2 || Duplicate 1st stack item. || stack.push(stack[len(stack)-1]) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 78 || 0x81 || DUP2 || 2 || 3 || Duplicate 2nd stack item. || stack.push(stack[len(stack)-2]) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 79 || ... || ... || ... || ... || ... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 80 || 0x8F || DUP16 || 16 || 17 || Duplicate 16th stack item. || stack.push(stack[len(stack)-16]) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 81 || 90s: Exchange Operations ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 82 || 0x90 || SWAP1 || 2 || 2 || Exchange 1st and 2nd stack items. || _l = len(stack)stack[_l - 1] || stack[_l - 2] = stack[_l - 2] || stack[_l - 1] ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 83 || 0x91 || SWAP2 || 3 || 3 || Exchange 1st and 3rd stack items. || _l = len(stack)stack[_l - 1] || stack[_l - 3] = stack[_l - 3] || stack[_l - 1] ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 84 || ... || ... || ... || ... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 85 || 0x9F || SWAP16 || 17 || 17 || Exchange 1st and 17th stack items. || _l = len(stack)stack[_l - 1] || stack[_l - 16] = stack[_l - 16] || stack[_l - 1] ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 86 || a0s: Logging Operations ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 87 || 0xA0 || LOG0 || 2 || 0 || Append log record with no topics. || mem_start || mem_size = stack.pop(2)data = memory[mem_start: mem_start + mem_size]topics = vector(0)STATE.add_log(contract.address() || topics || data || exec_env.block.number) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 88 || 0xA1 || LOG1 || 3 || 0 || Append log record with one topic. || mem_start || mem_size = stack.pop(2)data = memory[mem_start: mem_start + mem_size]topics = vector(1)topics[0] = stack.pop().to_bytes()STATE.add_log(contract.address() || topics || data || exec_env.block.number) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 89 || ... || ... || ... || ... || ... ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 90 || 0xA4 || LOG4 || 6 || 0 || Append log record with four topics. || mem_start || mem_size = stack.pop(2)data = memory[mem_start: mem_start + mem_size]topics = vector(4)for i in 4:  topics[i] = stack.pop().to_bytes()STATE.add_log(contract.address() || topics || data || exec_env.block.number) ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 91 || f0s: System operations ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 92 || 0xF0 || CREATE || 3 || 1 || Create a new account with associated code. || value || offset || size = stack.pop(3)input = memory[offset:offset + size]gas = contract.gasreturn_val || addr || return_gas || success = CREATE(input || gas || value) success ? stack.push(addr) : stack.push(0)contract.gas += return_gas || creates newexecution frame ||  ||  ||  ||  ||  ||  || 
+|-
+| 93 || 0xF1 || CALL || 7 || 1 || Message-call into an account. || gas || addr || value || a_offset || a_size || b_offset || b_size = stack.pop(7)input = memory[a_offset:a_offset + a_size]return_val || return_gas || success = CALL(addr || input || gas || value)success ? stack.push(1) : stack.push(0)memory[b_offset:b_offset + b_size] = return_valcontract.gas += return_gas || creates newexecution frame ||  ||  || 
+|-
+| 94 || 0xF2 || CALLCODE || 7 || 1 || Message-call into this account with an alternative account’s code. || gas || addr || value || a_offset || a_size || b_offset || b_size = stack.pop(7)input = memory[a_offset:a_offset + a_size]return_val || return_gas || success = CALL_CODE(addr || input || gas || value)if success:   stack.push(1)  memory[b_offset:b_offset + b_size] = return_val else:   stack.push(0)contract.gas += return_gas || creates newexecution frame ||  ||  || 
+|-
+| 95 || 0xF3 || RETURN || 2 || 0 || Halt execution returning output data. || offset || size = stack.pop(2)output_data = memory[offset:offset + size]return output_data ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 96 || 0xF4 || DELEGATECALL || 6 || 1 || Message-call into this account with an alternative account’s code || but persisting the current values for sender and value. || gas || addr || a_offset || a_size || b_offset || b_size = stack.pop(6)input = memory[a_offset:a_offset + a_size]return_val || return_gas || success = DELEGATE_CALL(addr || input || gas)if success:   stack.push(1)  memory[b_offset:b_offset + b_size] = return_val else:   stack.push(0)contract.gas += return_gas || creates newexecution frame ||  ||  ||  || 
+|-
+| 97 || 0xF5 || CREATE2 || 4 || 1 || Create a new account with associated code. || endowment || offset || size || salt = stack.pop(4)input = memory[offset:offset + size]gas = contract.gasreturn_val || addr || return_gas || success = CREATE2(input || gas || endowment || salt)success ? stack.push(addr) : stack.push(0)contract.gas += return_gas || creates newexecution frame ||  ||  ||  ||  || 
+|-
+| 98 || - ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 99 || - ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 100 || - ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 101 || - ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 102 || 0xFA || STATICCALL || 6 || 1 || Static message-call into an account. || gas || addr || a_offset || a_size || b_offset || b_size = stack.pop(6)input = memory[a_offset:a_offset + a_size]return_val || return_gas || success = STATIC_CALL(addr || input || gas)if success:   stack.push(1)  memory[b_offset:b_offset + b_size] = return_val else:   stack.push(0)contract.gas += return_gas || creates newexecution frame ||  ||  ||  ||  || 
+|-
+| 103 || - ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 104 || - ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 105 || 0xFD || REVERT || 2 || 0 || Halt execution reverting state changes but returning data and remaining gas. || offset || size = stack.pop(2)data = memory[offset:offset + size]return data ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 106 || 0xFE || INVALID || - || - || Designated invalid instruction. || --- ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 107 || 0xFF || SELFDESTRUCT || 1 || 0 || Halt execution and register account for later deletion || addr = stack.pop()caller = contract.addressbalance = STATE.get_balance(caller)STATE.add_balance(addr || balance)STATE.SUICIDE(caller) || account deletion ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 108 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|-
+| 109 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || 
+|}
