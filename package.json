@@ -1,0 +1,23 @@
+{
+	"name": "notebooks",
+	"version": "1.0.0",
+	"description": "= Ethereum Protocol - Series 0.x",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sambacha/notebooks.git"
+	},
+	"keywords": [],
+	"author": "sam bacha",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/sambacha/notebooks/issues"
+	},
+	"homepage": "https://github.com/sambacha/notebooks#readme",
+	"devDependencies": {
+		"prettier": "^2.4.0"
+	}
+}

@@ -1,2 +1,11 @@
 .DS_Store
 node_modules
+*.log
+*.env
+.env
+.cache/
+cache
+build/
+dist/
+_dev/
+_workspace/
