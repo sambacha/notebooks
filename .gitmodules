@@ -1,0 +1,3 @@
+[submodule "gitsidian"]
+	path = gitsidian
+	url = https://github.com/ishgunacar/gitsidian

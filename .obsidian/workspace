@@ -1,0 +1,93 @@
+{
+  "main": {
+    "id": "113245b0ca413622",
+    "type": "split",
+    "children": [
+      {
+        "id": "edaa05949f524f82",
+        "type": "leaf",
+        "state": {
+          "type": "graph",
+          "state": {}
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "57b44bcfb30611ed",
+    "type": "split",
+    "children": [
+      {
+        "id": "547ab39d5c33a3dd",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "58b40e2d96463771",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "896cb811e25c242d",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "6261852852db6fa6",
+    "type": "split",
+    "children": [
+      {
+        "id": "e3c058f238420818",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "27c96f760d5fd6a8",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "edaa05949f524f82",
+  "lastOpenFiles": [
+    "Flashbots_Changelog.md",
+    "dont_use_momentjs.md",
+    "Deployments.md",
+    "clock_sync_trustless_oracle.md",
+    "Bundle_Clashing_Analysis.md"
+  ]
+}
