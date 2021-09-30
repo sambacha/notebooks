@@ -4,11 +4,14 @@
     "type": "split",
     "children": [
       {
-        "id": "edaa05949f524f82",
+        "id": "25bb29caeb56283f",
         "type": "leaf",
         "state": {
-          "type": "graph",
-          "state": {}
+          "type": "markdown",
+          "state": {
+            "file": "ASICS.md",
+            "mode": "source"
+          }
         }
       }
     ],
@@ -65,6 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "ASICS.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -74,6 +78,14 @@
                 "unlinkedCollapsed": true
               }
             }
+          },
+          {
+            "id": "ffbe4e3be8a67a34",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {}
+            }
           }
         ]
       }
@@ -82,12 +94,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "edaa05949f524f82",
+  "active": "25bb29caeb56283f",
   "lastOpenFiles": [
-    "Flashbots_Changelog.md",
-    "dont_use_momentjs.md",
-    "Deployments.md",
+    "ASICS.md",
     "clock_sync_trustless_oracle.md",
-    "Bundle_Clashing_Analysis.md"
+    "dont_use_momentjs.md",
+    "EIP1559.md",
+    "Eth2_Validator_Pools_and_MEV.md",
+    "EVM_OPCDOES.md",
+    "Flashbots_Changelog.md",
+    "MEV_and_Arbitrum.md",
+    "MEV_in_ETH2.md",
+    "MEV_miner_fee calculation.md"
   ]
 }

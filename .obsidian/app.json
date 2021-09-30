@@ -1,3 +1,5 @@
 {
-  "fileSortOrder": "alphabeticalReverse"
+  "fileSortOrder": "alphabeticalReverse",
+  "showFrontmatter": true,
+  "spellcheck": true
 }
