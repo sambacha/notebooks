@@ -6,5 +6,8 @@
   "obsidian-mind-map",
   "obsidian-git",
   "sliding-panes-obsidian",
-  "calendar"
+  "calendar",
+  "obsidian-codemirror-options",
+  "obsidian-chartsview-plugin",
+  "table-editor-obsidian"
 ]

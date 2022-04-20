@@ -1,5 +1,9 @@
 {
   "fileSortOrder": "alphabeticalReverse",
   "showFrontmatter": true,
-  "spellcheck": true
+  "spellcheck": true,
+  "spellcheckDictionary": [
+    "Validator",
+    "Extractable"
+  ]
 }

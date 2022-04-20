@@ -44,6 +44,8 @@ Note that as p decreases, so does the required miner fee.
 ![](https://storage.googleapis.com/ethereum-hackmd/upload_61fd15eacb8798e9efa5ba04fb4d57fc.png)  
 _With p\=2.0×10−9_
 
+
+
 [Notebook source](https://github.com/ethereum/abm1559/blob/master/notebooks/uncle_risk.ipynb)
 
 ### [](https://notes.ethereum.org/@barnabe/rk5ue1WF_#How-much-MEV-should-I-expect-in-the-block "How-much-MEV-should-I-expect-in-the-block")How much MEV should I expect in the block?

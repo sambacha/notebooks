@@ -1,14 +1,17 @@
 {
   "main": {
-    "id": "113245b0ca413622",
+    "id": "beeb4da3e3051d7d",
     "type": "split",
     "children": [
       {
-        "id": "c4dc49d572251b13",
+        "id": "97646e5a89959158",
         "type": "leaf",
         "state": {
-          "type": "empty",
-          "state": {}
+          "type": "markdown",
+          "state": {
+            "file": "trident/TridentRouter.md",
+            "mode": "source"
+          }
         }
       }
     ],
@@ -65,6 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "trident/TridentRouter.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -82,25 +86,66 @@
               "type": "calendar",
               "state": {}
             }
+          },
+          {
+            "id": "1fd9ada2c75b53ec",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "trident/TridentRouter.md"
+              }
+            }
+          },
+          {
+            "id": "323e8ef6bf212fa4",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
+          },
+          {
+            "id": "39d30faf46dd6d43",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "a916fa6ccf5d18a5",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "trident/TridentRouter.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 100
   },
-  "active": "c4dc49d572251b13",
+  "active": "97646e5a89959158",
   "lastOpenFiles": [
-    "Untitled 2.md",
+    "trident/TridentRouter.md",
+    "README.md",
+    "time_public_good.md",
+    "TIMESTAMP_FORMATS.md",
+    "UniswapV3.md",
+    "Untitled.md",
     "Untitled 1.md",
-    "Problems_with_Consensus_JSON_RPC.md",
-    "parity_drift.md",
-    "MultiChain_MEV.md",
-    "ASICS.md",
-    "Bundle_Clashing_Analysis.md",
-    "EVM_OPCDOES.md",
-    "Eth2_Validator_Pools_and_MEV.md",
-    "Flashbots_Changelog.md"
+    "Untitled 2.md",
+    "Untitled 3.md",
+    "Untitled 8.md"
   ]
 }
