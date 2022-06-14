@@ -1,0 +1,9 @@
+.obsidian/
+*.min.js
+*.js
+*.svg
+*.html
+*.css
+*.scss
+*.log
+*.json

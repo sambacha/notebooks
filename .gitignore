@@ -1,3 +1,4 @@
+__dump__/
 _tmp/
 Untitled*
 .DS_Store
@@ -11,3 +12,8 @@ build/
 dist/
 _dev/
 _workspace/
+_attic/
+_wip/
+
+
+

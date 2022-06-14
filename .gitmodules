@@ -1,3 +1,6 @@
 [submodule "gitsidian"]
 	path = gitsidian
 	url = https://github.com/ishgunacar/gitsidian
+[submodule ".obsidian/plugins/note-refactor"]
+	path = .obsidian/plugins/note-refactor
+	url = https://github.com/lynchjames/note-refactor-obsidian
