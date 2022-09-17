@@ -7,7 +7,7 @@ author: fvictorio
 
 # Understanding gas costs after Berlin - HackMD
 
-> Understanding gas costs after Berlin The Berlin hard fork will [go
+> Understanding gas costs after Berlin The Berlin hard fork will [go >
 > live on mainnet on April 14](h
 
 The Berlin hard fork will

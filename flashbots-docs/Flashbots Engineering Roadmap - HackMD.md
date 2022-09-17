@@ -24,36 +24,13 @@ P2-MVP
 
 Pool integrations
 
- hierarchy
- FlashBots
-FlashBots 
- Illuminate
-Illuminate 
- FlashBots->Illuminate 
- Democratize
-Democratize 
- FlashBots->Democratize 
- Reduce
-Reduce 
- FlashBots->Reduce 
- Distribute
-Distribute 
- FlashBots->Distribute 
- mev\_inspect
-mev\_inspect 
- Illuminate->mev\_inspect 
- mev\_explore
-mev\_explore 
- Illuminate->mev\_explore 
- mev\_relay
-mev\_relay 
- Democratize->mev\_relay 
- mev\_extract
-mev\_extract 
- Democratize->mev\_extract 
- mev\_geth
-mev\_geth 
- mev\_extract->mev\_geth 
+hierarchy FlashBots FlashBots Illuminate Illuminate
+FlashBots->Illuminate Democratize Democratize FlashBots->Democratize
+Reduce Reduce FlashBots->Reduce Distribute Distribute
+FlashBots->Distribute mev_inspect mev_inspect Illuminate->mev_inspect
+mev_explore mev_explore Illuminate->mev_explore mev_relay mev_relay
+Democratize->mev_relay mev_extract mev_extract Democratize->mev_extract
+mev_geth mev_geth mev_extract->mev_geth
 
 ![](https://i.imgur.com/SHhZJFK.png)
 
@@ -115,21 +92,28 @@ mev\_geth
     -   output accounts and nonces involved in PGA
 -   research relevance
     -   dashboard
-    -   breadth first search for quantifying coverage (how much of the strategy space are we catching, how to distribute per protocol/strategy/bot)
--   What is the MEV strategy taxonomy and how to express strategies in order types?
+    -   breadth first search for quantifying coverage (how much of the
+        strategy space are we catching, how to distribute per
+        protocol/strategy/bot)
+-   What is the MEV strategy taxonomy and how to express strategies in
+    order types?
 -   What is miner upside from running flashbots?
--   What is expected network relief? (assuming all front-running activity moved to flashbots)
+-   What is expected network relief? (assuming all front-running
+    activity moved to flashbots)
 -   What is backtest of benchmarks over last 6 months?
--   What is live performance over one week? (assuming 100% flashbot penetration)
+-   What is live performance over one week? (assuming 100% flashbot
+    penetration)
 
 #### [](https://hackmd.io/MU12HqHvTougtvWC9GYHog#Geth-Fork-Spec "Geth-Fork-Spec")Geth Fork Spec
 
 -   Key considerations
-    -   make minimal changes to geth in order to make setup and auditing easy
+    -   make minimal changes to geth in order to make setup and auditing
+        easy
     -   avoid impact existing operations (latency, validity, security)
     -   have flashbot system failure revert to regular geth operation
     -   consider spamming of invalid bundles
-    -   provide similar infrastructure transparency guarantees as regular mempool
+    -   provide similar infrastructure transparency guarantees as
+        regular mempool
     -   provide strategy privacy until inclusion
 -   Components
     -   [Bundle interface](https://github.com/MEV-Ship/flashbots/issues/3)
@@ -139,11 +123,14 @@ mev\_geth
     -   [Profit switching algo](https://github.com/MEV-Ship/flashbots/issues/7)
     -   [Integration tests](https://github.com/MEV-Ship/flashbots/issues/7)
 -   TODO
-    -   how do we notify the network that a block contains a flashbots bundle?
+    -   how do we notify the network that a block contains a flashbots
+        bundle?
         -   require trader to emit event and validate by miner
         -   miner adds data to block header
-    -   should we send receipts to the traders about their position in the auction?
-    -   how should block template profitability be communicated to profit switching algo?
+    -   should we send receipts to the traders about their position in
+        the auction?
+    -   how should block template profitability be communicated to
+        profit switching algo?
     -   how to setup environment for integration tests
 
 #### [](https://hackmd.io/MU12HqHvTougtvWC9GYHog#ETHResearch-post "ETHResearch-post")ETHResearch post
@@ -181,7 +168,8 @@ mev\_geth
 
 #### [](https://hackmd.io/MU12HqHvTougtvWC9GYHog#mev-explore "mev-explore")mev-explore
 
--   build dashboard for making sense of mev extraction activity in the wild
+-   build dashboard for making sense of mev extraction activity in the
+    wild
 
 ### [](https://hackmd.io/MU12HqHvTougtvWC9GYHog#Core-Devs1 "Core-Devs1")Core Devs
 

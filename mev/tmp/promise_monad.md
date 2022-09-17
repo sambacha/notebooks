@@ -66,8 +66,8 @@ function getBalances() {
 		.accounts()
 		.then((accounts) =>
 			Promise.all(accounts.map(web3.eth.getBalance)).then(
-				(balances) => Ramda.zipObject(accounts, balances),
-			),
+				(balances) => Ramda.zipObject(accounts, balances)
+			)
 		);
 }
 ```
@@ -96,11 +96,11 @@ function getBalances() {
 			Promise.all(
 				accounts
 					.map(web3.eth.getBalance)
-					.then((balances) => [accounts, balances]),
-			),
+					.then((balances) => [accounts, balances])
+			)
 		)
 		.then(([accounts, balances]) =>
-			Ramda.zipObject(accounts, balances),
+			Ramda.zipObject(accounts, balances)
 		);
 }
 ```
@@ -115,7 +115,7 @@ Promises solve the callback hell for most cases, but not all.
 async function getBalances() {
 	const accounts = await web3.eth.accounts();
 	const balances = await Promise.all(
-		accounts.map(web3.eth.getBalance),
+		accounts.map(web3.eth.getBalance)
 	);
 	return Ramda.zipObject(balances, accounts);
 }

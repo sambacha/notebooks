@@ -2,16 +2,20 @@
 created: 2022-01-04T23:29:27 (UTC -08:00)
 tags: []
 source: https://notes.ethereum.org/@ipsilon/evm-performance-report-geth-vs-evmone
-author: 
+author:
 ---
 
 # EVM Performance Report — Geth vs evmone - HackMD
 
 > ## Excerpt
-> # EVM Performance Report — Geth vs evmone  This report compares performance of the latests versions
+>
+> # EVM Performance Report — Geth vs evmone This report compares performance of the latests versions
 
 ---
-This report compares performance of the latests versions of [Geth](https://geth.ethereum.org/) and [evmone](https://github.com/ethereum/evmone) EVMs.
+
+This report compares performance of the latests versions of
+[Geth](https://geth.ethereum.org/) and
+[evmone](https://github.com/ethereum/evmone) EVMs.
 
 -   [EVM Performance Report — Geth vs evmone](https://notes.ethereum.org/@ipsilon/evm-performance-report-geth-vs-evmone#EVM-Performance-Report-%E2%80%94-Geth-vs-evmone "EVM Performance Report — Geth vs evmone")
     -   [EVM implementations](https://notes.ethereum.org/@ipsilon/evm-performance-report-geth-vs-evmone#EVM-implementations "EVM implementations")
@@ -24,27 +28,54 @@ This report compares performance of the latests versions of [Geth](https://geth.
 
 ## [](https://notes.ethereum.org/@ipsilon/evm-performance-report-geth-vs-evmone#EVM-implementations "EVM-implementations")EVM implementations
 
-In total we have compared 3 EVM implementations: Geth and 2 evmone interpreters (Advanced & Baseline).
+In total we have compared 3 EVM implementations: Geth and 2 evmone
+interpreters (Advanced & Baseline).
 
-The original evmone/Advanced has relatively sophisticated design: during code analysis it also collects information about gas cost and stack requirements of groups of instructions (basic blocks). This makes the later execution more efficient.  
-In contrast, the evmone/Baseline has “classic” EVM design with the code analysis limited only to the mandatory collecting of valid `JUMPDEST` locations.
+The original evmone/Advanced has relatively sophisticated design: during
+code analysis it also collects information about gas cost and stack
+requirements of groups of instructions (basic blocks). This makes the
+later execution more efficient.  
+In contrast, the evmone/Baseline has “classic” EVM design with the code
+analysis limited only to the mandatory collecting of valid `JUMPDEST`
+locations.
 
 The latest stable releases of the projects have been used:
 
--   [geth](https://github.com/ethereum/go-ethereum) [1.10.12](https://github.com/ethereum/go-ethereum/releases/tag/v1.10.12) released 2021-11-08, built with go 1.16.2
--   [evmone](https://github.com/ethereum/evmone) [0.8.2](https://github.com/ethereum/evmone/releases/tag/v0.8.2) released 2021-08-26, built with clang 13.0.1
+-   [geth](https://github.com/ethereum/go-ethereum)
+    [1.10.12](https://github.com/ethereum/go-ethereum/releases/tag/v1.10.12)
+    released 2021-11-08, built with go 1.16.2
+-   [evmone](https://github.com/ethereum/evmone)
+    [0.8.2](https://github.com/ethereum/evmone/releases/tag/v0.8.2)
+    released 2021-08-26, built with clang 13.0.1
 
 ## [](https://notes.ethereum.org/@ipsilon/evm-performance-report-geth-vs-evmone#Benchmark-Suite "Benchmark-Suite")Benchmark Suite
 
-The performance of EVM implementations is compared with the [evmone’s benchmark suite](https://github.com/ethereum/evmone/tree/master/test/benchmarks). The suite is a small set of computation heavy EVM bytecodes (e.g. cryptographic hash functions) and some micro-benchmarks (e.g. stress testing single `MSTORE` instruction). The suite **does not necessarily represent Mainnet workloads**.
+The performance of EVM implementations is compared with the
+[evmone’s benchmark suite](https://github.com/ethereum/evmone/tree/master/test/benchmarks).
+The suite is a small set of computation heavy EVM bytecodes (e.g.
+cryptographic hash functions) and some micro-benchmarks (e.g. stress
+testing single `MSTORE` instruction). The suite **does not necessarily
+represent Mainnet workloads**.
 
-To benchmark evmone interpreters, the internal tool `evmone-bench` based on the [benchmark library](https://github.com/google/benchmark) has been used. It outputs results in a JSON format. To benchmark geth, the `evm run --bench` tool has been used. The loading of the benchmark suite and execution runs have been conducted via the [`evm-bench.py`](https://github.com/ethereum/evmone/pull/396) Python script. Comparison and statistical analysis have been in the end processed with [`benchstat`](https://pkg.go.dev/golang.org/x/perf/cmd/benchstat).
+To benchmark evmone interpreters, the internal tool `evmone-bench` based
+on the [benchmark library](https://github.com/google/benchmark) has been
+used. It outputs results in a JSON format. To benchmark geth, the
+`evm run --bench` tool has been used. The loading of the benchmark suite
+and execution runs have been conducted via the
+[`evm-bench.py`](https://github.com/ethereum/evmone/pull/396) Python
+script. Comparison and statistical analysis have been in the end
+processed with
+[`benchstat`](https://pkg.go.dev/golang.org/x/perf/cmd/benchstat).
 
-Each benchmark sample contains code analysis and execution times combined. These timings may be separated with some additional tuning of the tooling in the future.
+Each benchmark sample contains code analysis and execution times
+combined. These timings may be separated with some additional tuning of
+the tooling in the future.
 
 ## [](https://notes.ethereum.org/@ipsilon/evm-performance-report-geth-vs-evmone#Results "Results")Results
 
-Hardware: Intel Haswell CPU [i7-4790K](https://ark.intel.com/content/www/us/en/ark/products/80807/intel-core-i74790k-processor-8m-cache-up-to-4-40-ghz.html) with turbo frequency 4.4 GHz, Linux x86-64 (Ubuntu 20.04)
+Hardware: Intel Haswell CPU
+[i7-4790K](https://ark.intel.com/content/www/us/en/ark/products/80807/intel-core-i74790k-processor-8m-cache-up-to-4-40-ghz.html)
+with turbo frequency 4.4 GHz, Linux x86-64 (Ubuntu 20.04)
 
 The evmone/Baseline has been used as the _baseline_ performance.
 

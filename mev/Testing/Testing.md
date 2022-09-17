@@ -1,10 +1,14 @@
 All of these steps are for Ubuntu 22.04 in the goerli test network.
 
-If you want to contribute with guides and testing, please [open an issue](https://github.com/flashbots/mev-boost/issues).
+If you want to contribute with guides and testing, please
+[open an issue](https://github.com/flashbots/mev-boost/issues).
 
-**Make sure that you are only using test ether, test accounts and test passwords. Do not reuse anything from your real accounts. When in doubt, please [ask](https://github.com/flashbots/mev-boost/issues/new)**.
+**Make sure that you are only using test ether, test accounts and test
+passwords. Do not reuse anything from your real accounts. When in doubt,
+please [ask](https://github.com/flashbots/mev-boost/issues/new)**.
 
-We will add instructions for more consensus clients as they complete the Builder API implementation.
+We will add instructions for more consensus clients as they complete the
+Builder API implementation.
 
 Let's start...
 
@@ -43,7 +47,8 @@ Install [metamask](https://metamask.io/).
 
 # Register as a validator
 
-1. Get goerli test ether. See [Where to get test ether?](https://github.com/flashbots/mev-boost/issues/199)
+1. Get goerli test ether. See
+   [Where to get test ether?](https://github.com/flashbots/mev-boost/issues/199)
 
 2. Connect your metamast to the goerli network.
 
@@ -55,7 +60,8 @@ cd ~/workspace/staking_deposit-cli-76ed782-linux-amd64
 mv validator_keys validator_keys-goerli
 ```
 
-4. Go to the goreli launchpad and follow the instructions to become a validator: https://goerli.launchpad.ethereum.org/en/
+4. Go to the goreli launchpad and follow the instructions to become a
+   validator: https://goerli.launchpad.ethereum.org/en/
 
 # mev-boost
 
@@ -83,7 +89,6 @@ Run:
 ```
 ./mev-boost -goerli -relay-check -relays https://0xafa4c6985aa049fb79dd37010438cfebeb0f2bd42b115b89dd678dab0670c1de38da0c4e9138c9290a398ecd9a0b3110@builder-relay-goerli.flashbots.net
 ```
-
 
 # Run an execution client
 
@@ -121,12 +126,14 @@ Run in goerli:
 
 ```
 cd ~/workspace/nethermind/src/Nethermind/Nethermind.Runner
-dotnet run -c Release -- --config goerli --JsonRpc.Host=0.0.0.0 --JsonRpc.Enabled true --JsonRpc.JwtSecretFile=/home/$USER/workspace/secret 
+dotnet run -c Release -- --config goerli --JsonRpc.Host=0.0.0.0 --JsonRpc.Enabled true --JsonRpc.JwtSecretFile=/home/$USER/workspace/secret
 ```
 
 # Run a consensus client
 
-We will add instructions for more consensus clients as they complete the Builder API implementation. Look at the [consensus clients implementation status](https://github.com/flashbots/mev-boost#consensus-clients-implementation-status).
+We will add instructions for more consensus clients as they complete the
+Builder API implementation. Look at the
+[consensus clients implementation status](https://github.com/flashbots/mev-boost#consensus-clients-implementation-status).
 
 ## Teku
 
@@ -135,7 +142,8 @@ Last verified: 2022-08-26
 Status: https://github.com/flashbots/mev-boost/issues/156
 
 Known issues:
-- https://github.com/ConsenSys/teku/issues/5885
+
+-   https://github.com/ConsenSys/teku/issues/5885
 
 Install java:
 
@@ -152,11 +160,18 @@ cd teku
 ./gradlew installDist
 ```
 
-Prepare the validator keys. These are the keys created when you registered your validator. Teku requires you to put the password to the validator keys in a `.txt` file with the same name as the keystore. And then, to pass the paths as parameters as shown below, replacing `<path-to-keystore.json>:<path-to-password.txt>` with your paths.
+Prepare the validator keys. These are the keys created when you
+registered your validator. Teku requires you to put the password to the
+validator keys in a `.txt` file with the same name as the keystore. And
+then, to pass the paths as parameters as shown below, replacing
+`<path-to-keystore.json>:<path-to-password.txt>` with your paths.
 
-More details: https://docs.teku.consensys.net/en/latest/Reference/CLI/CLI-Syntax/#validator-keys
+More details:
+https://docs.teku.consensys.net/en/latest/Reference/CLI/CLI-Syntax/#validator-keys
 
-Also note to replace <fee-recepient-eth-address> with the address of your test account for validators-proposer-default-fee-recipient in order to earn test rewards.
+Also note to replace <fee-recepient-eth-address> with the address of
+your test account for validators-proposer-default-fee-recipient in order
+to earn test rewards.
 
 Run the validator and beacon nodes:
 
@@ -181,7 +196,8 @@ Last verified: 2022-07-06
 Status: https://github.com/flashbots/mev-boost/issues/158
 
 Known issues:
-- https://github.com/prysmaticlabs/prysm/issues/8072#issuecomment-1169746714
+
+-   https://github.com/prysmaticlabs/prysm/issues/8072#issuecomment-1169746714
 
 [Install go](#go).
 
@@ -202,7 +218,8 @@ cd prysm
 
 ### Run in kiln
 
-(note to replace <fee-recepient-eth-address> with the address of your test account, to earn test rewards)
+(note to replace <fee-recepient-eth-address> with the address of your
+test account, to earn test rewards)
 
 Run a beacon node:
 
@@ -218,11 +235,13 @@ go run ./cmd/beacon-chain/... \
   --http-mev-relay=http://127.0.0.1:18550
 ```
 
-To do: run a validator. See https://github.com/prysmaticlabs/prysm/issues/11001
+To do: run a validator. See
+https://github.com/prysmaticlabs/prysm/issues/11001
 
 ### Run in ropsten
 
-(note to replace <fee-recepient-eth-address> with the address of your test account, to earn test rewards)
+(note to replace <fee-recepient-eth-address> with the address of your
+test account, to earn test rewards)
 
 Run a beacon node:
 
@@ -305,7 +324,7 @@ yarn run build
 Run the beacon node:
 
 ```
-./lodestar beacon --network --builder.enabled --builder.urls http://127.0.0.1:18550 --jwt-secret=/home/$USER/workspace/secret                              
+./lodestar beacon --network --builder.enabled --builder.urls http://127.0.0.1:18550 --jwt-secret=/home/$USER/workspace/secret
 ```
 
 Run the validator node:
@@ -344,14 +363,14 @@ Install go:
 ```
 cd ~/workspace/
 wget https://go.dev/dl/go1.18.3.linux-amd64.tar.gz
-sudo rm -rf /usr/local/go 
+sudo rm -rf /usr/local/go
 sudo tar -C /usr/local -xzf go1.18.3.linux-amd64.tar.gz
 export PATH=$PATH:/usr/local/go/bin
 ```
 
 # References
 
-- https://notes.ethereum.org/@launchpad/kiln
-- https://notes.ethereum.org/@launchpad/ropsten
-- https://hackmd.io/@prysmaticlabs/BJeinxFsq
-- https://hackmd.io/@StefanBratanov/BkMlo1RO9
+-   https://notes.ethereum.org/@launchpad/kiln
+-   https://notes.ethereum.org/@launchpad/ropsten
+-   https://hackmd.io/@prysmaticlabs/BJeinxFsq
+-   https://hackmd.io/@StefanBratanov/BkMlo1RO9

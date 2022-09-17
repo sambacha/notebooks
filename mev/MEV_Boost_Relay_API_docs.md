@@ -2,48 +2,60 @@
 
 > MEV-Boost Relay API specification v1.0.0
 
-The Flashbots relay is open source: [https://github.com/flashbots/mev-boost-relay](https://github.com/flashbots/mev-boost-relay)
+The Flashbots relay is open source:
+[https://github.com/flashbots/mev-boost-relay](https://github.com/flashbots/mev-boost-relay)
 
 A relay has several responsibilities:
 
-- APIs for proposers ([builder-spec](https://ethereum.github.io/builder-specs/#/Builder)), block builders and data transparency
-- Handling validator registrations and block proposals in a scalable manner
-- Block escrow, data availability, redundancy
-- Simulate and verify blocks sent by block-builders, rate-limit if necessary
-    - correct amount of fees paid to most recent feeRecipient of validator
-    - correct block attributes and transactions
-    - within the gasLimit requested by the validator
+-   APIs for proposers
+    ([builder-spec](https://ethereum.github.io/builder-specs/#/Builder)),
+    block builders and data transparency
+-   Handling validator registrations and block proposals in a scalable
+    manner
+-   Block escrow, data availability, redundancy
+-   Simulate and verify blocks sent by block-builders, rate-limit if
+    necessary
+    -   correct amount of fees paid to most recent feeRecipient of
+        validator
+    -   correct block attributes and transactions
+    -   within the gasLimit requested by the validator
 
 ## Data types
 
-A reference implementation of the data types with correct SSZ encoding and signing routines can be found in this repository: [https://github.com/flashbots/go-boost-utils](https://github.com/flashbots/go-boost-utils)
+A reference implementation of the data types with correct SSZ encoding
+and signing routines can be found in this repository:
+[https://github.com/flashbots/go-boost-utils](https://github.com/flashbots/go-boost-utils)
 
 #### [builder-specs](https://github.com/ethereum/builder-specs) and [beacon-APIs](https://github.com/ethereum/beacon-APIs)
 
-- [ValidatorRegistration](https://github.com/ethereum/beacon-APIs/blob/master/types/registration.yaml)
-- [SignedBuilderBid](https://github.com/ethereum/builder-specs/blob/main/types/bellatrix/bid.yaml)
-- [SignedBlindedBeaconBlock](https://github.com/ethereum/beacon-APIs/blob/master/types/bellatrix/block.yaml#L83)
-- [ExecutionPayload](https://github.com/ethereum/beacon-APIs/blob/master/types/bellatrix/execution_payload.yaml)
+-   [ValidatorRegistration](https://github.com/ethereum/beacon-APIs/blob/master/types/registration.yaml)
+-   [SignedBuilderBid](https://github.com/ethereum/builder-specs/blob/main/types/bellatrix/bid.yaml)
+-   [SignedBlindedBeaconBlock](https://github.com/ethereum/beacon-APIs/blob/master/types/bellatrix/block.yaml#L83)
+-   [ExecutionPayload](https://github.com/ethereum/beacon-APIs/blob/master/types/bellatrix/execution_payload.yaml)
 
 #### BidTrace
 
-Represents public information about a block sent by a builder to the relay, or from the relay to the proposer. Depending on the context, `value` might represent the claimed value by a builder (not necessarily a value confirmed by the relay).
+Represents public information about a block sent by a builder to the
+relay, or from the relay to the proposer. Depending on the context,
+`value` might represent the claimed value by a builder (not necessarily
+a value confirmed by the relay).
 
 ```json
 {
 	"slot": "123",
-  "parent_hash": "0xcf8e0d4e9587369b2301d0790347320302cc0943d5a1884560367e8208d920f2",
-  "block_hash": "0xcf8e0d4e9587369b2301d0790347320302cc0943d5a1884560367e8208d920f2",
-  "builder_pubkey": "0x7b2cb8dd64e0aafe7ea7b6c95065c9364cf99d38470c12ee807d55f7de1529ad29ce2c422e0b65e3d5a05c02caca249",
-  "proposer_pubkey": "0x8a1d7b8dd64e0aafe7ea7b6c95065c9364cf99d38470c12ee807d55f7de1529ad29ce2c422e0b65e3d5a05c02caca249",
-  "proposer_fee_recipient": "0x2b7a7b8dd64e0aafe7ea7b6c95065c9364cf99d38470c12ee807d55f7de1529ad29ce2c422e0b65e3d5a05c02caca249",
-  "gas_used": "3371033",
-  "gas_limit": "30000000",
+	"parent_hash": "0xcf8e0d4e9587369b2301d0790347320302cc0943d5a1884560367e8208d920f2",
+	"block_hash": "0xcf8e0d4e9587369b2301d0790347320302cc0943d5a1884560367e8208d920f2",
+	"builder_pubkey": "0x7b2cb8dd64e0aafe7ea7b6c95065c9364cf99d38470c12ee807d55f7de1529ad29ce2c422e0b65e3d5a05c02caca249",
+	"proposer_pubkey": "0x8a1d7b8dd64e0aafe7ea7b6c95065c9364cf99d38470c12ee807d55f7de1529ad29ce2c422e0b65e3d5a05c02caca249",
+	"proposer_fee_recipient": "0x2b7a7b8dd64e0aafe7ea7b6c95065c9364cf99d38470c12ee807d55f7de1529ad29ce2c422e0b65e3d5a05c02caca249",
+	"gas_used": "3371033",
+	"gas_limit": "30000000",
 	"value": "1234567"
 }
 ```
 
-See also the [reference implementation of `BidTrace`](https://github.com/flashbots/go-boost-utils/blob/main/types/builder.go#L217)
+See also the
+[reference implementation of `BidTrace`](https://github.com/flashbots/go-boost-utils/blob/main/types/builder.go#L217)
 
 #### SignedBidTrace
 
@@ -54,21 +66,23 @@ See also the [reference implementation of `BidTrace`](https://github.com/flashbo
 }
 ```
 
-Note: BLS signature using the builder domain (relative to the genesis fork and with a zero genesis validators root).
+Note: BLS signature using the builder domain (relative to the genesis
+fork and with a zero genesis validators root).
 
-See also the [reference implementation of `SignedBidTrace`](https://github.com/flashbots/go-boost-utils/blob/main/types/builder.go#L230)
+See also the
+[reference implementation of `SignedBidTrace`](https://github.com/flashbots/go-boost-utils/blob/main/types/builder.go#L230)
 
 #### ValidatorRegistration
 
 ```json
 {
-  "message": {
-    "fee_recipient": "0xabcf8e0d4e9587369b2301d0790347320302cc09",
-	  "gas_limit": "1",
-    "timestamp": "1",
-    "pubkey": "0x93247f2209abcacf57b75a51dafae777f9dd38bc7053d1af526f220a7489a6d3a2753e5f3e8b1cfe39b56f43611df74a"
-  },
-  "signature": "0x1b66ac1fb663c9bc59509846d6ec05345bd908eda73e670af888da41af171505cc411d61252fb6cb3fa0017b679f8bb2305b26a285fa2737f175668d0dff91cc1b66ac1fb663c9bc59509846d6ec05345bd908eda73e670af888da41af171505"
+	"message": {
+		"fee_recipient": "0xabcf8e0d4e9587369b2301d0790347320302cc09",
+		"gas_limit": "1",
+		"timestamp": "1",
+		"pubkey": "0x93247f2209abcacf57b75a51dafae777f9dd38bc7053d1af526f220a7489a6d3a2753e5f3e8b1cfe39b56f43611df74a"
+	},
+	"signature": "0x1b66ac1fb663c9bc59509846d6ec05345bd908eda73e670af888da41af171505cc411d61252fb6cb3fa0017b679f8bb2305b26a285fa2737f175668d0dff91cc1b66ac1fb663c9bc59509846d6ec05345bd908eda73e670af888da41af171505"
 }
 ```
 
@@ -78,30 +92,26 @@ See also the [reference implementation of `SignedBidTrace`](https://github.com/f
 
 All API errors follow this schema:
 
-
 ```json
 {
-  "code": 400,
-  "message": "description about the error"
+	"code": 400,
+	"message": "description about the error"
 }
 ```
 
 ```jsonc
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "type": "object",
-  "properties": {
-    "code": {
-      "type": "integer"
-    },
-    "message": {
-      "type": "string"
-    }
-  },
-  "required": [
-    "code",
-    "message"
-  ]
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "object",
+	"properties": {
+		"code": {
+			"type": "integer"
+		},
+		"message": {
+			"type": "string"
+		}
+	},
+	"required": ["code", "message"]
 }
 ```
 
@@ -109,26 +119,35 @@ All API errors follow this schema:
 
 ## Proposer API
 
-Standard APIs as per [builder spec](https://ethereum.github.io/builder-specs/#/Builder):
+Standard APIs as per
+[builder spec](https://ethereum.github.io/builder-specs/#/Builder):
 
-- [registerValidator](https://ethereum.github.io/builder-specs/#/Builder/registerValidator): `POST /eth/v1/builder/validators`
-- [getHeader](https://ethereum.github.io/builder-specs/#/Builder/getHeader): `GET  /eth/v1/builder/header/{slot}/{parent_hash}/{pubkey}` - Get an execution payload header.
-- [submitBlindedBlock](https://ethereum.github.io/builder-specs/#/Builder/submitBlindedBlock): `POST /eth/v1/builder/blinded_blocks` - Submit a signed blinded block and get unblinded execution payload.
-- [status](https://ethereum.github.io/builder-specs/#/): `GET /eth/v1/builder/status`
-
-
+-   [registerValidator](https://ethereum.github.io/builder-specs/#/Builder/registerValidator):
+    `POST /eth/v1/builder/validators`
+-   [getHeader](https://ethereum.github.io/builder-specs/#/Builder/getHeader):
+    `GET /eth/v1/builder/header/{slot}/{parent_hash}/{pubkey}` - Get an
+    execution payload header.
+-   [submitBlindedBlock](https://ethereum.github.io/builder-specs/#/Builder/submitBlindedBlock):
+    `POST /eth/v1/builder/blinded_blocks` - Submit a signed blinded
+    block and get unblinded execution payload.
+-   [status](https://ethereum.github.io/builder-specs/#/):
+    `GET /eth/v1/builder/status`
 
 ## Block Builder API
 
 ### getValidators
 
-Get a list of validator registrations for validators scheduled to propose in the current and next epoch.
+Get a list of validator registrations for validators scheduled to
+propose in the current and next epoch.
 
 `GET /relay/v1/builder/validators`
 
 **Success Response**
 
-Array of validatorRegistrations for the current and next epoch. Each entry includes a slot and the validator with assigned duty (if he submitted a registration previously). Slots without a registered validator are omitted.
+Array of validatorRegistrations for the current and next epoch. Each
+entry includes a slot and the validator with assigned duty (if he
+submitted a registration previously). Slots without a registered
+validator are omitted.
 
 Payload:
 
@@ -136,19 +155,23 @@ Payload:
 [{
 	"slot": "123",
 	"entry": ValidatorRegistration
-}, 
+},
 ...]
 ```
 
-Example - API on Goerli: [https://builder-relay-goerli.flashbots.net/relay/v1/builder/validators](https://builder-relay-goerli.flashbots.net/relay/v1/builder/validators)
+Example - API on Goerli:
+[https://builder-relay-goerli.flashbots.net/relay/v1/builder/validators](https://builder-relay-goerli.flashbots.net/relay/v1/builder/validators)
 
 ### submitBlock
 
-Submit a new block to the relay. 
+Submit a new block to the relay.
 
 Notes:
 
-- Builder signature is over SSZ encoded `message` (for accountability). The message doesn’t include the transactions and can be made public with the (Data API), allowing anyone to verify the builder signature.
+-   Builder signature is over SSZ encoded `message` (for
+    accountability). The message doesn’t include the transactions and
+    can be made public with the (Data API), allowing anyone to verify
+    the builder signature.
 
 `POST /relay/v1/builder/blocks`
 
@@ -197,22 +220,29 @@ Request payload:
 }
 ```
 
-(See also the [reference implementation for `BuilderSubmitBlockRequest`](https://www.notion.so/1c83e10de67d484f89c3e196579eac85))
+(See also the
+[reference implementation for `BuilderSubmitBlockRequest`](https://www.notion.so/1c83e10de67d484f89c3e196579eac85))
 
-**Notes** 
+**Notes**
 
-- `execution_payload` is the [ExecutionPayload from the CL Bellatrix spec](https://github.com/ethereum/consensus-specs/blob/v1.1.9/specs/bellatrix/beacon-chain.md#executionpayload).
-- The relay will simulate the block to verify properties and proposer payment
+-   `execution_payload` is the
+    [ExecutionPayload from the CL Bellatrix spec](https://github.com/ethereum/consensus-specs/blob/v1.1.9/specs/bellatrix/beacon-chain.md#executionpayload).
+-   The relay will simulate the block to verify properties and proposer
+    payment
 
 **Success response:**
 
 Status code 200
 
-The block was received (but not yet checked for correctness, because simulation happens asynchronously). The response contains a receipt which includes a timestamp and `[BidTrace](https://www.notion.so/Relay-API-Spec-5fb0819366954962bc02e81cb33840f5)`.
+The block was received (but not yet checked for correctness, because
+simulation happens asynchronously). The response contains a receipt
+which includes a timestamp and
+`[BidTrace](https://www.notion.so/Relay-API-Spec-5fb0819366954962bc02e81cb33840f5)`.
 
 Notes
 
-- With the receipt, builders could formulate a case for censorship without relying on potentially false "voluntary" metrics from relay.
+-   With the receipt, builders could formulate a case for censorship
+    without relying on potentially false "voluntary" metrics from relay.
 
 ```json
 {
@@ -226,62 +256,79 @@ Notes
 
 Notes:
 
-- Builders will have an API to check success of block submission.
-    - The API could allow querying by `slot` + `parent_hash` + `block_hash` combination, or we could add should we add uid in the response payload
-- If using websockets/TCP connection, then the feedback about simulation status could be pushed to the builder.
+-   Builders will have an API to check success of block submission.
+    -   The API could allow querying by `slot` + `parent_hash` +
+        `block_hash` combination, or we could add should we add uid in
+        the response payload
+-   If using websockets/TCP connection, then the feedback about
+    simulation status could be pushed to the builder.
 
 ---
 
 ## Data API
 
-Provides data about received blocks from builders and header/payload queries from proposers. 
+Provides data about received blocks from builders and header/payload
+queries from proposers.
 
 ### ProposerPayloadsDelivered
 
-This API provides BidTraces for payloads that were delivered to proposers.
+This API provides BidTraces for payloads that were delivered to
+proposers.
 
 `GET /relay/v1/data/bidtraces/proposer_payload_delivered`
 
 Optional query arguments:
 
-- `slot`: a specific slot
-- `cursor`: a slot cursor, where `limit` number of entries up until the cursor slot is returned (note only `slot` or `cursor` can be used)
-- `limit`: maximum number of entries (100 max)
-- `block_hash`: search for a specific blockhash
-- `block_number`: search for a specific EL block number
+-   `slot`: a specific slot
+-   `cursor`: a slot cursor, where `limit` number of entries up until
+    the cursor slot is returned (note only `slot` or `cursor` can be
+    used)
+-   `limit`: maximum number of entries (100 max)
+-   `block_hash`: search for a specific blockhash
+-   `block_number`: search for a specific EL block number
 
-The response payload is an array of [BidTrace](https://www.notion.so/Relay-API-Spec-5fb0819366954962bc02e81cb33840f5) objects (which include blockhash, parenthash, etc). In case of reorgs there could be multiple bids per slot.
+The response payload is an array of
+[BidTrace](https://www.notion.so/Relay-API-Spec-5fb0819366954962bc02e81cb33840f5)
+objects (which include blockhash, parenthash, etc). In case of reorgs
+there could be multiple bids per slot.
 
 ```json
 [[BidTrace](https://www.notion.so/Relay-API-Spec-5fb0819366954962bc02e81cb33840f5)]
 ```
 
-This API is live on all our relays: [https://builder-relay-ropsten.flashbots.net/relay/v1/data/bidtraces/proposer_payload_delivered?limit=2](https://builder-relay-ropsten.flashbots.net/relay/v1/data/bidtraces/proposer_payload_delivered?limit=2)
+This API is live on all our relays:
+[https://builder-relay-ropsten.flashbots.net/relay/v1/data/bidtraces/proposer_payload_delivered?limit=2](https://builder-relay-ropsten.flashbots.net/relay/v1/data/bidtraces/proposer_payload_delivered?limit=2)
 
 ### BuilderBlocksReceived
 
-This API provides BidTraces for the builder block submission for a given slot (that were verified successfully).
+This API provides BidTraces for the builder block submission for a given
+slot (that were verified successfully).
 
 `GET /relay/v1/data/bidtraces/builder_blocks_received`
 
 Optional query arguments:
 
-- `slot`: a specific slot
-- `limit`: maximum number of entries (100 max)
-- `block_hash`: search for a specific blockhash
-- `block_number`: search for a specific EL block number
+-   `slot`: a specific slot
+-   `limit`: maximum number of entries (100 max)
+-   `block_hash`: search for a specific blockhash
+-   `block_number`: search for a specific EL block number
 
-The response payload is an array of [BidTrace](https://www.notion.so/Relay-API-Spec-5fb0819366954962bc02e81cb33840f5) objects (which include blockhash, parenthash, and in this case also `timestamp`).
+The response payload is an array of
+[BidTrace](https://www.notion.so/Relay-API-Spec-5fb0819366954962bc02e81cb33840f5)
+objects (which include blockhash, parenthash, and in this case also
+`timestamp`).
 
 ```json
 [[BidTrace](https://www.notion.so/Relay-API-Spec-5fb0819366954962bc02e81cb33840f5)WithTimestamp]
 ```
 
-This API is live on all our relays: [https://builder-relay-goerli.flashbots.net/relay/v1/data/bidtraces/builder_blocks_received?limit=5](https://builder-relay-goerli.flashbots.net/relay/v1/data/bidtraces/builder_blocks_received?limit=5)
+This API is live on all our relays:
+[https://builder-relay-goerli.flashbots.net/relay/v1/data/bidtraces/builder_blocks_received?limit=5](https://builder-relay-goerli.flashbots.net/relay/v1/data/bidtraces/builder_blocks_received?limit=5)
 
 ### ValidatorRegistration
 
-Return the latest validator registration for a given pubkey. Useful to check whether your own registration was successful.
+Return the latest validator registration for a given pubkey. Useful to
+check whether your own registration was successful.
 
 `GET /relay/v1/data/validator_registration?pubkey=_pubkey_`
 
@@ -297,13 +344,21 @@ ValidatorRegistration
 
 ### Events API (WIP, TBD)
 
-this events API is still work in progress and to be discussed and decided upon. 
+this events API is still work in progress and to be discussed and
+decided upon.
 
 #### Subscribing to events (TBD)
 
 `GET /relay/v1/data/events/realtime`
 
-The data is accessible by [Server-Side-Events stream subscription](https://html.spec.whatwg.org/multipage/server-sent-events.html#server-sent-events) (like the `[/eth/v1/events` API exposed by BN](https://ethereum.github.io/beacon-APIs/#/Events/eventstream)). Consumers should use [eventsource](https://html.spec.whatwg.org/multipage/server-sent-events.html#the-eventsource-interface) implementation to listen on those events. The events are delayed by a few slots.
+The data is accessible by
+[Server-Side-Events stream subscription](https://html.spec.whatwg.org/multipage/server-sent-events.html#server-sent-events)
+(like the `[/eth/v1/events` API exposed by
+BN](https://ethereum.github.io/beacon-APIs/#/Events/eventstream)).
+Consumers should
+use [eventsource](https://html.spec.whatwg.org/multipage/server-sent-events.html#the-eventsource-interface)
+implementation to listen on those events. The events are delayed by a
+few slots.
 
 ---
 
@@ -315,6 +370,18 @@ This is a simplified infrastructure diagram:
 
 **Notes:**
 
-- Validator registrations need to be handled in a scalable fashion, independently of the other proposer APIs (`getHeader`, `submitBlindedBlock`). The burst of up to 1M validator registrations each epoch requires a lot of resources to process, verify and save to a database.
-- Block submissions need to be verified by simulating the full block, and the relay needs to be prepared to throttle any individual builder in case of spam or other issues (continuous invalid blocks or incorrect proposer payment).
-- Operating a relay is infrastructure-intensive, and bugs can negatively impact Eth2 consensus. One of the solutions Flashbots is working on is a service called [Relay Monitor](https://github.com/flashbots/mev-boost/issues/142), which tracks relay performance and helps proposers interact only with healthy ones.
+-   Validator registrations need to be handled in a scalable fashion,
+    independently of the other proposer APIs (`getHeader`,
+    `submitBlindedBlock`). The burst of up to 1M validator registrations
+    each epoch requires a lot of resources to process, verify and save
+    to a database.
+-   Block submissions need to be verified by simulating the full block,
+    and the relay needs to be prepared to throttle any individual
+    builder in case of spam or other issues (continuous invalid blocks
+    or incorrect proposer payment).
+-   Operating a relay is infrastructure-intensive, and bugs can
+    negatively impact Eth2 consensus. One of the solutions Flashbots is
+    working on is a service called
+    [Relay Monitor](https://github.com/flashbots/mev-boost/issues/142),
+    which tracks relay performance and helps proposers interact only
+    with healthy ones.

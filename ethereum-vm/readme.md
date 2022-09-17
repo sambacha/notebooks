@@ -588,7 +588,8 @@ the sequence number starts at 0x0. In python:
 
 > > > import rlp, sha3
 > > > sha3.sha3_256(rlp.encode(["000000000000000000000000000073656e646572".decode('hex'),
-> > > 0])).hexdigest()[24:] '1f2a98889594024bffda3311cbe69728d392c06d'
+> > > > > > 0])).hexdigest()[24:]
+> > > '1f2a98889594024bffda3311cbe69728d392c06d'
 
 Note this means the address is strictly deterministic starting from the
 same state. If we deploy the contract, again, the sequence number of the
@@ -604,7 +605,8 @@ Same output, new contract address:
 
 > > > import rlp, sha3
 > > > sha3.sha3_256(rlp.encode(["000000000000000000000000000073656e646572".decode('hex'),
-> > > 1])).hexdigest()[24:] '14f6d12ecebb7606c528880ad8b97c25ab7d4ad9'
+> > > > > > 1])).hexdigest()[24:]
+> > > '14f6d12ecebb7606c528880ad8b97c25ab7d4ad9'
 
 Now we can send a transaction to the contract:
 

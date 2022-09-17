@@ -210,7 +210,7 @@ const datePattern = /^(\d{4})-(\d{2})-(\d{2})\s(\d{1,2}):(\d{2})$/;
 const [, year, month, day, rawHour, min] =
 	datePattern.exec("2010-10-20 4:30");
 new Date(
-	`${year}-${month}-${day}T${("0" + rawHour).slice(-2)}:${min}:00`,
+	`${year}-${month}-${day}T${("0" + rawHour).slice(-2)}:${min}:00`
 );
 // => "2010-10-19T17:30:00.000Z"
 
@@ -475,7 +475,7 @@ Math.floor(
 		1000 /
 		60 /
 		60 /
-		24,
+		24
 );
 // => 252
 
@@ -538,7 +538,7 @@ const firstDayOfWeek = 1; // monday as the first day (0 = sunday)
 const startOfYear = new Date(day.getFullYear(), 0, 1);
 startOfYear.setDate(
 	startOfYear.getDate() +
-		(firstDayOfWeek - (startOfYear.getDay() % 7)),
+		(firstDayOfWeek - (startOfYear.getDay() % 7))
 );
 const dayWeek =
 	Math.round((day - startOfYear) / MILLISECONDS_IN_WEEK) + 1;
@@ -552,7 +552,7 @@ const firstDayOfWeek = 1; // monday as the first day (0 = sunday)
 const startOfYear = new Date(day.getFullYear(), 0, 1);
 startOfYear.setDate(
 	startOfYear.getDate() +
-		(firstDayOfWeek - (startOfYear.getDay() % 7)),
+		(firstDayOfWeek - (startOfYear.getDay() % 7))
 );
 const dayWeek =
 	Math.round((day - startOfYear) / MILLISECONDS_IN_WEEK) + 1;
@@ -666,7 +666,7 @@ const array = [
 	new Date(2017, 4, 13),
 	new Date(2018, 2, 12),
 	new Date(2016, 0, 10),
-	new Date(2016, 0, 9),
+	new Date(2016, 0, 9)
 ];
 // Moment.js
 moment.max(array.map((a) => moment(a)));
@@ -711,7 +711,7 @@ const array = [
 	new Date(2017, 4, 13),
 	new Date(2018, 2, 12),
 	new Date(2016, 0, 10),
-	new Date(2016, 0, 9),
+	new Date(2016, 0, 9)
 ];
 // Moment.js
 moment.min(array.map((a) => moment(a)));
@@ -952,7 +952,7 @@ new Intl.RelativeTimeFormat().format(-4, "day");
 // date-fns
 import formatDistance from "date-fns/formatDistance";
 formatDistance(new Date(1536484369695), new Date(), {
-	addSuffix: true,
+	addSuffix: true
 });
 // => "4 days ago"
 
@@ -1012,7 +1012,7 @@ Math.ceil(
 		1000 /
 		60 /
 		60 /
-		24,
+		24
 );
 // => -2
 
@@ -1125,7 +1125,7 @@ dayjs("2010-10-20").isSame("2010-10-21", "month");
 // => true
 DateTime.fromISO("2010-10-20").hasSame(
 	DateTime.fromISO("2010-10-21"),
-	"month",
+	"month"
 );
 // => true
 ```
@@ -1174,7 +1174,7 @@ moment("2010-10-20").isBetween("2010-10-19", "2010-10-25");
 import isWithinInterval from "date-fns/isWithinInterval";
 isWithinInterval(new Date(2010, 9, 20), {
 	start: new Date(2010, 9, 19),
-	end: new Date(2010, 9, 25),
+	end: new Date(2010, 9, 25)
 });
 // => true
 
@@ -1187,7 +1187,7 @@ dayjs("2010-10-20").isBetween("2010-10-19", "2010-10-25");
 // luxon
 Interval.fromDateTimes(
 	DateTime.fromISO("2010-10-19"),
-	DateTime.fromISO("2010-10-25"),
+	DateTime.fromISO("2010-10-25")
 ).contains(DateTime.fromISO("2010-10-20"));
 // => true
 ```

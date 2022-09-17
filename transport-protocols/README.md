@@ -158,10 +158,10 @@ for await (const {readable, writable} of wt.incomingBidirectionalStreams) {
 ```javascript
 const mediaSource = new MediaSource();
 await new Promise((resolve) =>
-	mediaSource.addEventListener("sourceopen", resolve, { once: true }),
+	mediaSource.addEventListener("sourceopen", resolve, { once: true })
 );
 const sourceBuffer = mediaSource.addSourceBuffer(
-	'video/webm; codecs="opus, vp09.00.10.08"',
+	'video/webm; codecs="opus, vp09.00.10.08"'
 );
 const wt = new WebTransport("/video", { allowPooling: true });
 await fetch("https://example.com/babyshark");
@@ -169,8 +169,8 @@ for await (const datagram of wt.datagrams.readable) {
 	sourceBuffer.appendBuffer(datagram);
 	await new Promise((resolve) =>
 		sourceBuffer.addEventListener("update", resolve, {
-			once: true,
-		}),
+			once: true
+		})
 	);
 }
 ```
@@ -181,11 +181,11 @@ for await (const datagram of wt.datagrams.readable) {
 const mediaSource = new MediaSource();
 await new Promise((resolve) =>
 	mediaSource.addEventListener("sourceopen", () => resolve(), {
-		once: true,
-	}),
+		once: true
+	})
 );
 const sourceBuffer = mediaSource.addSourceBuffer(
-	'video/webm; codecs="opus, vp09.00.10.08"',
+	'video/webm; codecs="opus, vp09.00.10.08"'
 );
 const wt = new WebTransport("https://example.com/video");
 for await (const receiveStream of transport.incomingUnidirectionalStreams) {
@@ -194,8 +194,8 @@ for await (const receiveStream of transport.incomingUnidirectionalStreams) {
 	}
 	await new Promise((resolve) =>
 		sourceBuffer.addEventListener("update", resolve, {
-			once: true,
-		}),
+			once: true
+		})
 	);
 }
 ```

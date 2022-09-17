@@ -1,11 +1,13 @@
 1
 
-Hex ValueInstruction NameRemoves from StackPushes to StackDescriptionPseudocode
+Hex ValueInstruction NameRemoves from StackPushes to
+StackDescriptionPseudocode
 
 2
 
 0s: Stop and Arithmetic Operations  
-All arithmetic is modulo 2\*\*256 unless otherwise noted. The zero-th power of zero 0\*\*0 is defined to be one.
+All arithmetic is modulo 2\*\*256 unless otherwise noted. The zero-th
+power of zero 0\*\*0 is defined to be one.
 
 3
 
@@ -33,7 +35,8 @@ b == 0 ? stack.push(0) : stack.push(a / b)
 
 8
 
-0x05SDIV21Signed integer division operation (truncated).a, b = stack.pop(2)  
+0x05SDIV21Signed integer division operation (truncated).a, b =
+stack.pop(2)  
 if b == 0:  
 stack.push(0)  
 elif a == -2\*\*255 && b == -1:  
@@ -58,7 +61,7 @@ stack.push(sgn(a) \* (abs(a) % abs(b))
 11
 
 0x08ADDMOD31Modulo addition operation.a, b, c = stack.pop(3)  
-c == 0 ? stack.push(0) : stack.push((a + b) % c)  
+c == 0 ? stack.push(0) : stack.push((a + b) % c)
 
 12
 
@@ -72,8 +75,9 @@ stack.push(a\*\*b)
 
 14
 
-0x0BSIGNEXTEND21Extend length of two’s complement signed integer.a, b = stack.pop(2)  
-stack.push(extend\_sign(a, b))
+0x0BSIGNEXTEND21Extend length of two’s complement signed integer.a, b =
+stack.pop(2)  
+stack.push(extend_sign(a, b))
 
 15
 
@@ -138,23 +142,24 @@ stack.push(~a)
 26
 
 0x1ABYTE21Retrieve single byte from word.n, v = stack.pop(2)  
-byte = get\_byte(v, n) # returns n'th byte from b  
+byte = get_byte(v, n) # returns n'th byte from b  
 stack.push(byte)
 
 27
 
-0x1BSHL21Left shift operation.to\_shift, val = stack.pop(2)  
-stack.push(val << to\_shift)
+0x1BSHL21Left shift operation.to_shift, val = stack.pop(2)  
+stack.push(val << to_shift)
 
 28
 
-0x1CSHR21Logical right shift operation.to\_shift, val = stack.pop(2)  
-stack.push(val >> to\_shift)
+0x1CSHR21Logical right shift operation.to_shift, val = stack.pop(2)  
+stack.push(val >> to_shift)
 
 29
 
-0x1DSAR21Arithmetic (signed) right shift operation.to\_shift, val = stack.pop(2)  
-stack.push(val >> uint(to\_shift))
+0x1DSAR21Arithmetic (signed) right shift operation.to_shift, val =
+stack.pop(2)  
+stack.push(val >> uint(to_shift))
 
 30
 
@@ -172,94 +177,106 @@ stack.push(KEC)
 
 33
 
-0x30ADDRESS01Get address of currently executing account.address = exec\_env.get\_address()  
+0x30ADDRESS01Get address of currently executing account.address =
+exec_env.get_address()  
 stack.push(address)
 
 34
 
 0x31BALANCE11Get balance of the given account.address = stack.pop()  
-balance = STATE.get\_balance(address)  
+balance = STATE.get_balance(address)  
 stack.push(balance)reads  
 stack dependant
 
 35
 
-0x32ORIGIN01Get execution origination address.origin = exec\_env.get\_origin()  
+0x32ORIGIN01Get execution origination address.origin =
+exec_env.get_origin()  
 stack.push(origin)
 
 36
 
-0x33CALLER01Get caller address.caller = exec\_env.get\_caller()  
+0x33CALLER01Get caller address.caller = exec_env.get_caller()  
 stack.push(caller)
 
 37
 
-0x34CALLVALUE01Get deposited value by the instruction/transaction responsible for this execution.value = exec\_env.get\_value()  
+0x34CALLVALUE01Get deposited value by the instruction/transaction
+responsible for this execution.value = exec_env.get_value()  
 stack.push(value)
 
 38
 
-0x35CALLDATALOAD11Get input data of current environment.offset = stack.pop()  
-bytes = exec\_env.input\[offset:offset+32\]  
-stack.push(bytes.to\_uint256())
+0x35CALLDATALOAD11Get input data of current environment.offset =
+stack.pop()  
+bytes = exec_env.input\[offset:offset+32\]  
+stack.push(bytes.to_uint256())
 
 39
 
-0x36CALLDATASIZE01Get size of input data in current environment.size = exec\_env.input.size()  
+0x36CALLDATASIZE01Get size of input data in current environment.size =
+exec_env.input.size()  
 stack.push(size)
 
 40
 
-0x37CALLDATACOPY30Copy input data in current environment to memory.mem\_offset, data\_offset, size = stack.pop(3)  
-data = exec\_env.input\[data\_offset:data\_offset + size\]  
-memory\[mem\_offset:mem\_offset + size\] = data
+0x37CALLDATACOPY30Copy input data in current environment to
+memory.mem_offset, data_offset, size = stack.pop(3)  
+data = exec_env.input\[data_offset:data_offset + size\]  
+memory\[mem_offset:mem_offset + size\] = data
 
 41
 
-0x38CODESIZE01Get size of code running in current environment.code\_size = exec\_env.machine\_code.size()  
-stack.push(code\_size)
+0x38CODESIZE01Get size of code running in current environment.code_size
+= exec_env.machine_code.size()  
+stack.push(code_size)
 
 42
 
-0x39CODECOPY30Copy code running in current environment to memory.mem\_offset, code\_offset, size = stack.pop(3)  
-code = exec\_env.machine\_code\[code\_offset:code\_offset + size\]  
-memory\[mem\_offset:mem\_offset + size\] = code
+0x39CODECOPY30Copy code running in current environment to
+memory.mem_offset, code_offset, size = stack.pop(3)  
+code = exec_env.machine_code\[code_offset:code_offset + size\]  
+memory\[mem_offset:mem_offset + size\] = code
 
 43
 
-0x3AGASPRICE01Get price of gas in current environment.price = exec\_env.price  
+0x3AGASPRICE01Get price of gas in current environment.price =
+exec_env.price  
 stack.push(price)
 
 44
 
 0x3BEXTCODESIZE11Get size of an account’s code.address = stack.pop()  
-code\_size = STATE.get\_code\_size(address)  
-stack.push(code\_size)reads  
+code_size = STATE.get_code_size(address)  
+stack.push(code_size)reads  
 stack dependant
 
 45
 
-0x3CEXTCODECOPY40Copy an account’s code to memory.address, mem\_offset, code\_offset, size = stack.pop(4)  
-code = STATE.get\_code(address)  
-code\_copy = code\[code\_offset:code\_offset + size\]  
-memory\[mem\_offset:mem\_offset + size\] = code\_copyreads  
+0x3CEXTCODECOPY40Copy an account’s code to memory.address, mem_offset,
+code_offset, size = stack.pop(4)  
+code = STATE.get_code(address)  
+code_copy = code\[code_offset:code_offset + size\]  
+memory\[mem_offset:mem_offset + size\] = code_copyreads  
 stack dependant
 
 46
 
-0x3DRETURNDATASIZE01Get size of output data from the previous call from the current environment.stack.push(return\_data)
+0x3DRETURNDATASIZE01Get size of output data from the previous call from
+the current environment.stack.push(return_data)
 
 47
 
-0x3ERETURNDATACOPY30Copy output data from the previous call to memory.mem\_offset, data\_offset, size = stack.pop(3)  
-data = return\_data\[data\_offset:data\_offset + size\]  
-memory\[mem\_offset:mem\_offset + size\] = data
+0x3ERETURNDATACOPY30Copy output data from the previous call to
+memory.mem_offset, data_offset, size = stack.pop(3)  
+data = return_data\[data_offset:data_offset + size\]  
+memory\[mem_offset:mem_offset + size\] = data
 
 48
 
 0x3FEXTCODEHASH11Get hash of an account’s code.address = stack.pop()  
-code\_hash = STATE.get\_code\_hash(address)  
-stack.push(code\_hash)reads  
+code_hash = STATE.get_code_hash(address)  
+stack.push(code_hash)reads  
 stack dependant
 
 49
@@ -268,19 +285,22 @@ stack dependant
 
 50
 
-0x40BLOCKHASH11Get the hash of one of the 256 most recent complete blocks.a = stack.pop()  
+0x40BLOCKHASH11Get the hash of one of the 256 most recent complete
+blocks.a = stack.pop()  
 number = block.number  
-result = hash\_func(number, a, 0)  
+result = hash_func(number, a, 0)  
 stack.push(result)
 
 51
 
-0x41COINBASE01Get the current block’s beneficiary address.coin\_base = block.coin\_base  
-stack.push(coin\_base)
+0x41COINBASE01Get the current block’s beneficiary address.coin_base =
+block.coin_base  
+stack.push(coin_base)
 
 52
 
-0x42TIMESTAMP01Get the current block’s timestamp.timestamp = block.timestamp  
+0x42TIMESTAMP01Get the current block’s timestamp.timestamp =
+block.timestamp  
 stack.push(timestamp)
 
 53
@@ -290,23 +310,26 @@ stack.push(number)
 
 54
 
-0x44DIFFICULTY01Get the current block’s difficulty.difficulty = block.difficulty  
+0x44DIFFICULTY01Get the current block’s difficulty.difficulty =
+block.difficulty  
 stack.push(difficulty)
 
 55
 
-0x45GASLIMIT01Get the current block’s gas limit.gas\_limit = block.gas\_limit  
-stack.push(gas\_limit)
+0x45GASLIMIT01Get the current block’s gas limit.gas_limit =
+block.gas_limit  
+stack.push(gas_limit)
 
 56
 
-0x46CHAINID01Get the chain ID.chain\_id = exec\_env.chain\_info.id  
-stack.push(chain\_id)
+0x46CHAINID01Get the chain ID.chain_id = exec_env.chain_info.id  
+stack.push(chain_id)
 
 57
 
-0x47SELFBALANCE01Get balance of currently executing account.address = exec\_env.get\_address()  
-balance = STATE.get\_balance(address)  
+0x47SELFBALANCE01Get balance of currently executing account.address =
+exec_env.get_address()  
+balance = STATE.get_balance(address)  
 stack.push(balance)reads  
 contract address
 
@@ -323,31 +346,31 @@ contract address
 0x51  
 MLOAD11Load word from memory.offset = stack.pop()  
 word = memory\[offset:offset + 32\] # byte array  
-stack.push(word.to\_uint256())
+stack.push(word.to_uint256())
 
 61
 
 0x52MSTORE20Save word to memory.offset, value = stack.pop(2)  
-memory\[offset:offset+32\] = value.to\_bytes()
+memory\[offset:offset+32\] = value.to_bytes()
 
 62
 
 0x53MSTORE820Save byte to memory.offset, value = stack.pop(2)  
-memory\[offset:offset+8\] = value.to\_bytes()\[24:\]
+memory\[offset:offset+8\] = value.to_bytes()\[24:\]
 
 63
 
 0x54SLOAD11Load word from storage.idx = stack.pop()  
-address = exec\_env.get\_address()  
-storage = STATE.get\_storage(address)  
+address = exec_env.get_address()  
+storage = STATE.get_storage(address)  
 stack.push(storage\[idx\])reads  
 contract address
 
 64
 
 0x55SSTORE20Save word to storage.idx, value = stack.pop(2)  
-address = exec\_env.get\_address()  
-storage = STATE.get\_storage(address)  
+address = exec_env.get_address()  
+storage = STATE.get_storage(address)  
 storage\[idx\] = valuewrites  
 contract address
 
@@ -358,20 +381,24 @@ pc = position
 
 66
 
-0x57JUMPI20Conditionally alter the program counter.position, condition = stack.pop(2)  
+0x57JUMPI20Conditionally alter the program counter.position, condition =
+stack.pop(2)  
 pc = condition != 0 ? position : position + 1
 
 67
 
-0x58PC01Get the value of the program counter prior to the increment corresponding to this instruction.stack.push(pc)
+0x58PC01Get the value of the program counter prior to the increment
+corresponding to this instruction.stack.push(pc)
 
 68
 
-0x59MSIZE01Get the size of active memory in bytes.stack.push(memory.size())
+0x59MSIZE01Get the size of active memory in
+bytes.stack.push(memory.size())
 
 69
 
-0x5AGAS01Get the amount of available gas, including the corresponding reduction for the cost of this instruction.gas = contract.gas  
+0x5AGAS01Get the amount of available gas, including the corresponding
+reduction for the cost of this instruction.gas = contract.gas  
 stack.push(gas)
 
 70
@@ -385,14 +412,14 @@ This operation has no effect on machine state during execution.---
 
 72
 
-0x60PUSH101Place 1 byte item on stack.code = exec\_env.machine\_code  
+0x60PUSH101Place 1 byte item on stack.code = exec_env.machine_code  
 start, end = pc + 1, pc + 2  
 stack.push(code\[start:end\])  
 pc = end
 
 73
 
-0x61PUSH201Place 2-byte item on stack.code = exec\_env.machine\_code  
+0x61PUSH201Place 2-byte item on stack.code = exec_env.machine_code  
 start, end = pc + 1, pc + 3  
 stack.push(code\[start:end\])  
 pc = end
@@ -403,7 +430,8 @@ pc = end
 
 75
 
-0x7FPUSH3201Place 32-byte (full word) item on stack.code = exec\_env.machine\_code  
+0x7FPUSH3201Place 32-byte (full word) item on stack.code =
+exec_env.machine_code  
 start, end = pc + 1, pc + 33  
 stack.push(code\[start:end\])  
 pc = end
@@ -426,7 +454,8 @@ pc = end
 
 80
 
-0x8FDUP161617Duplicate 16th stack item.stack.push(stack\[len(stack)-16\])
+0x8FDUP161617Duplicate 16th stack
+item.stack.push(stack\[len(stack)-16\])
 
 81
 
@@ -449,7 +478,8 @@ stack\[\_l - 1\], stack\[\_l - 3\] = stack\[\_l - 3\], stack\[\_l - 1\]
 85
 
 0x9FSWAP161717Exchange 1st and 17th stack items.\_l = len(stack)  
-stack\[\_l - 1\], stack\[\_l - 16\] = stack\[\_l - 16\], stack\[\_l - 1\]
+stack\[\_l - 1\], stack\[\_l - 16\] = stack\[\_l - 16\], stack\[\_l -
+1\]
 
 86
 
@@ -457,18 +487,20 @@ a0s: Logging Operations
 
 87
 
-0xA0LOG020Append log record with no topics.mem\_start, mem\_size = stack.pop(2)  
-data = memory\[mem\_start: mem\_start + mem\_size\]  
+0xA0LOG020Append log record with no topics.mem_start, mem_size =
+stack.pop(2)  
+data = memory\[mem_start: mem_start + mem_size\]  
 topics = vector(0)  
-STATE.add\_log(contract.address(), topics, data, exec\_env.block.number)
+STATE.add_log(contract.address(), topics, data, exec_env.block.number)
 
 88
 
-0xA1LOG130Append log record with one topic.mem\_start, mem\_size = stack.pop(2)  
-data = memory\[mem\_start: mem\_start + mem\_size\]  
+0xA1LOG130Append log record with one topic.mem_start, mem_size =
+stack.pop(2)  
+data = memory\[mem_start: mem_start + mem_size\]  
 topics = vector(1)  
-topics\[0\] = stack.pop().to\_bytes()  
-STATE.add\_log(contract.address(), topics, data, exec\_env.block.number)
+topics\[0\] = stack.pop().to_bytes()  
+STATE.add_log(contract.address(), topics, data, exec_env.block.number)
 
 89
 
@@ -476,12 +508,13 @@ STATE.add\_log(contract.address(), topics, data, exec\_env.block.number)
 
 90
 
-0xA4LOG460Append log record with four topics.mem\_start, mem\_size = stack.pop(2)  
-data = memory\[mem\_start: mem\_start + mem\_size\]  
+0xA4LOG460Append log record with four topics.mem_start, mem_size =
+stack.pop(2)  
+data = memory\[mem_start: mem_start + mem_size\]  
 topics = vector(4)  
 for i in 4:  
-topics\[i\] = stack.pop().to\_bytes()  
-STATE.add\_log(contract.address(), topics, data, exec\_env.block.number)
+topics\[i\] = stack.pop().to_bytes()  
+STATE.add_log(contract.address(), topics, data, exec_env.block.number)
 
 91
 
@@ -489,65 +522,74 @@ f0s: System operations
 
 92
 
-0xF0CREATE31Create a new account with associated code.value, offset, size = stack.pop(3)  
+0xF0CREATE31Create a new account with associated code.value, offset,
+size = stack.pop(3)  
 input = memory\[offset:offset + size\]  
 gas = contract.gas  
-return\_val, addr, return\_gas, success = CREATE(input, gas, value)  
+return_val, addr, return_gas, success = CREATE(input, gas, value)  
 success ? stack.push(addr) : stack.push(0)  
-contract.gas += return\_gascreates new  
+contract.gas += return_gascreates new  
 execution frame
 
 93
 
-0xF1CALL71Message-call into an account.gas, addr, value, a\_offset, a\_size, b\_offset, b\_size = stack.pop(7)  
-input = memory\[a\_offset:a\_offset + a\_size\]  
-return\_val, return\_gas, success = CALL(addr, input, gas, value)  
+0xF1CALL71Message-call into an account.gas, addr, value, a_offset,
+a_size, b_offset, b_size = stack.pop(7)  
+input = memory\[a_offset:a_offset + a_size\]  
+return_val, return_gas, success = CALL(addr, input, gas, value)  
 success ? stack.push(1) : stack.push(0)  
-memory\[b\_offset:b\_offset + b\_size\] = return\_val  
-contract.gas += return\_gas  
+memory\[b_offset:b_offset + b_size\] = return_val  
+contract.gas += return_gas  
 creates new  
 execution frame
 
 94
 
-0xF2CALLCODE71Message-call into this account with an alternative account’s code.gas, addr, value, a\_offset, a\_size, b\_offset, b\_size = stack.pop(7)  
-input = memory\[a\_offset:a\_offset + a\_size\]  
-return\_val, return\_gas, success = CALL\_CODE(addr, input, gas, value)  
+0xF2CALLCODE71Message-call into this account with an alternative
+account’s code.gas, addr, value, a_offset, a_size, b_offset, b_size =
+stack.pop(7)  
+input = memory\[a_offset:a_offset + a_size\]  
+return_val, return_gas, success = CALL_CODE(addr, input, gas, value)  
 if success:  
 stack.push(1)  
-memory\[b\_offset:b\_offset + b\_size\] = return\_val  
+memory\[b_offset:b_offset + b_size\] = return_val  
 else:  
 stack.push(0)  
-contract.gas += return\_gascreates new  
+contract.gas += return_gascreates new  
 execution frame
 
 95
 
-0xF3RETURN20Halt execution returning output data.offset, size = stack.pop(2)  
-output\_data = memory\[offset:offset + size\]  
-return output\_data
+0xF3RETURN20Halt execution returning output data.offset, size =
+stack.pop(2)  
+output_data = memory\[offset:offset + size\]  
+return output_data
 
 96
 
-0xF4DELEGATECALL61Message-call into this account with an alternative account’s code, but persisting the current values for sender and value.gas, addr, a\_offset, a\_size, b\_offset, b\_size = stack.pop(6)  
-input = memory\[a\_offset:a\_offset + a\_size\]  
-return\_val, return\_gas, success = DELEGATE\_CALL(addr, input, gas)  
+0xF4DELEGATECALL61Message-call into this account with an alternative
+account’s code, but persisting the current values for sender and
+value.gas, addr, a_offset, a_size, b_offset, b_size = stack.pop(6)  
+input = memory\[a_offset:a_offset + a_size\]  
+return_val, return_gas, success = DELEGATE_CALL(addr, input, gas)  
 if success:  
 stack.push(1)  
-memory\[b\_offset:b\_offset + b\_size\] = return\_val  
+memory\[b_offset:b_offset + b_size\] = return_val  
 else:  
 stack.push(0)  
-contract.gas += return\_gascreates new  
+contract.gas += return_gascreates new  
 execution frame
 
 97
 
-0xF5CREATE241Create a new account with associated code.endowment, offset, size, salt = stack.pop(4)  
+0xF5CREATE241Create a new account with associated code.endowment,
+offset, size, salt = stack.pop(4)  
 input = memory\[offset:offset + size\]  
 gas = contract.gas  
-return\_val, addr, return\_gas, success = CREATE2(input, gas, endowment, salt)  
+return_val, addr, return_gas, success = CREATE2(input, gas, endowment,
+salt)  
 success ? stack.push(addr) : stack.push(0)  
-contract.gas += return\_gascreates new  
+contract.gas += return_gascreates new  
 execution frame
 
 98
@@ -568,15 +610,16 @@ execution frame
 
 102
 
-0xFASTATICCALL61Static message-call into an account.gas, addr, a\_offset, a\_size, b\_offset, b\_size = stack.pop(6)  
-input = memory\[a\_offset:a\_offset + a\_size\]  
-return\_val, return\_gas, success = STATIC\_CALL(addr, input, gas)  
+0xFASTATICCALL61Static message-call into an account.gas, addr, a_offset,
+a_size, b_offset, b_size = stack.pop(6)  
+input = memory\[a_offset:a_offset + a_size\]  
+return_val, return_gas, success = STATIC_CALL(addr, input, gas)  
 if success:  
 stack.push(1)  
-memory\[b\_offset:b\_offset + b\_size\] = return\_val  
+memory\[b_offset:b_offset + b_size\] = return_val  
 else:  
 stack.push(0)  
-contract.gas += return\_gascreates new  
+contract.gas += return_gascreates new  
 execution frame
 
 103
@@ -589,7 +632,8 @@ execution frame
 
 105
 
-0xFDREVERT20Halt execution reverting state changes but returning data and remaining gas.offset, size = stack.pop(2)  
+0xFDREVERT20Halt execution reverting state changes but returning data
+and remaining gas.offset, size = stack.pop(2)  
 data = memory\[offset:offset + size\]  
 return data
 
@@ -599,8 +643,9 @@ return data
 
 107
 
-0xFFSELFDESTRUCT10Halt execution and register account for later deletionaddr = stack.pop()  
+0xFFSELFDESTRUCT10Halt execution and register account for later
+deletionaddr = stack.pop()  
 caller = contract.address  
-balance = STATE.get\_balance(caller)  
-STATE.add\_balance(addr, balance)  
+balance = STATE.get_balance(caller)  
+STATE.add_balance(addr, balance)  
 STATE.SUICIDE(caller)account deletion
