@@ -9,8 +9,9 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "__dump__/Phil Does Security  MEV… wat do.md",
-            "mode": "source"
+            "file": "Untitled.md",
+            "mode": "source",
+            "source": false
           }
         }
       }
@@ -68,7 +69,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "__dump__/Phil Does Security  MEV… wat do.md",
+                "file": "Untitled.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -93,7 +94,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "__dump__/Phil Does Security  MEV… wat do.md"
+                "file": "Untitled.md"
               }
             }
           },
@@ -122,7 +123,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "__dump__/Phil Does Security  MEV… wat do.md",
+                "file": "Untitled.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,15 +138,15 @@
   },
   "active": "97646e5a89959158",
   "lastOpenFiles": [
-    "__dump__/Phil Does Security  MEV… wat do.md",
-    "__dump__/Present tense    Google developer documentation style guide.md",
-    "_tmp/Untitled 8.md",
-    "_tmp/open source developer collective for the creative space.md",
-    "_tmp/Untitled.md",
-    "_tmp/Untitled 3.md",
-    "fb/MEV in eth2 - an early exploration.md",
-    "fb/Searcher-related changes.md",
-    "fb/Bundle Clashing Analysis.md",
-    "fb/Flashbots Core v0.2 Proposal.md"
+    "ERC Process.md",
+    "ABI Gen for Static and MEV Comments.md",
+    "eth.md",
+    "Untitled.md",
+    "openmev.md",
+    "mev/UniswapV3.md",
+    "mev/time_public_good.md",
+    "mev/README.md",
+    "mev/Quantifying_Realized_Extractable_Value.md",
+    "mev/MultiChain_MEV.md"
   ]
 }
