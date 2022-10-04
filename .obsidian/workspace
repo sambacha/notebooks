@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Untitled.md",
+            "file": "ethereum-vm/EVM Performance Report.md",
             "mode": "source",
             "source": false
           }
@@ -69,7 +69,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Untitled.md",
+                "file": "ethereum-vm/EVM Performance Report.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -94,7 +94,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Untitled.md"
+                "file": "ethereum-vm/EVM Performance Report.md"
               }
             }
           },
@@ -123,7 +123,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Untitled.md",
+                "file": "ethereum-vm/EVM Performance Report.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,15 +138,15 @@
   },
   "active": "97646e5a89959158",
   "lastOpenFiles": [
+    "markets/AMMs/slides/Possibility & Impossibility of Liquidity Adaptation in Prediction Markets.pdf",
+    "Richard Hamming - You and Your Research -.md",
+    "Untitled.md",
     "ERC Process.md",
     "ABI Gen for Static and MEV Comments.md",
     "eth.md",
-    "Untitled.md",
     "openmev.md",
     "mev/UniswapV3.md",
     "mev/time_public_good.md",
-    "mev/README.md",
-    "mev/Quantifying_Realized_Extractable_Value.md",
-    "mev/MultiChain_MEV.md"
+    "mev/README.md"
   ]
 }

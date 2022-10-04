@@ -18,5 +18,8 @@
   "homepage": "https://github.com/sambacha/notebooks#readme",
   "devDependencies": {
     "prettier": "^2.7.1"
+  },
+  "dependencies": {
+    "pagefind": "^0.8.1"
   }
 }
