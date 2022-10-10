@@ -2,19 +2,12 @@
 created: 2022-09-21T10:46:25 (UTC -07:00)
 tags: []
 source: https://subcults.com/articles/research.html
-author: 
+author: Richard Hamming 
 ---
 
-# Richard Hamming - You and Your Research - 1986
+#  You and Your Research
 
 > At a seminar in the Bell Communications Research Colloquia Series, Dr. Richard W. Hamming, a Professor at the Naval Postgraduate School in Monterey, California and a retired Bell Labs scientist, gave a very interesting and stimulating talk, `You and Your Research' to an overflow audience of some 200 Bellcore staff members and visitors at the Morris Research and Engineering Center on March 7, 1986. This talk centered on Hamming's observations and research on the question “Why do so few scientists make significant contributions and so many are forgotten in the long run?” From his more than forty years of experience, thirty of which were at Bell Laboratories, he has made a number of direct observations, asked very pointed questions of scientists about what, how, and why they did things, studied the lives of great scientists and great contributions, and has done introspection and studied theories of creativity. The talk is about what he has learned in terms of the properties of the individual scientists, their abilities, traits, working habits, attitudes, and philosophy.
-
----
-[← Back](https://subcults.com/)
-
-### by Dr. Richard W. Hamming
-
-At a seminar in the Bell Communications Research Colloquia Series, Dr. Richard W. Hamming, a Professor at the Naval Postgraduate School in Monterey, California and a retired Bell Labs scientist, gave a very interesting and stimulating talk, \`You and Your Research' to an overflow audience of some 200 Bellcore staff members and visitors at the Morris Research and Engineering Center on March 7, 1986. This talk centered on Hamming's observations and research on the question “Why do so few scientists make significant contributions and so many are forgotten in the long run?” From his more than forty years of experience, thirty of which were at Bell Laboratories, he has made a number of direct observations, asked very pointed questions of scientists about what, how, and why they did things, studied the lives of great scientists and great contributions, and has done introspection and studied theories of creativity. The talk is about what he has learned in terms of the properties of the individual scientists, their abilities, traits, working habits, attitudes, and philosophy.
 
 In order to make the information in the talk more widely available, the tape recording that was made of that talk was carefully transcribed. This transcription includes the discussions which followed in the question and answer period. As with any talk, the transcribed version suffers from translation as all the inflections of voice and the gestures of the speaker are lost; one must listen to the tape recording to recapture that part of the presentation. While the recording of Richard Hamming's talk was completely intelligible, that of some of the questioner's remarks were not. Where the tape recording was not intelligible I have added in parentheses my impression of the questioner's remarks. Where there was a question and I could identify the questioner, I have checked with each to ensure the accuracy of my interpretation of their remarks.
 
@@ -229,5 +222,3 @@ Question: You, at the outset of your talk, minimized or played down luck; but yo
 Hamming: There was some luck. On the other hand I don't know the alternate branches. Until you can say that the other branches would not have been equally or more successful, I can't say. Is it luck the particular thing you do? For example, when I met Feynman at Los Alamos, I knew he was going to get a Nobel Prize. I didn't know what for. But I knew darn well he was going to do great work. No matter what directions came up in the future, this man would do great work. And sure enough, he did do great work. It isn't that you only do a little great work at this circumstance and that was luck, there are many opportunities sooner or later. There are a whole pail full of opportunities, of which, if you're in this situation, you seize one and you're great over there instead of over here. There is an element of luck, yes and no. Luck favors a prepared mind; luck favors a prepared person. It is not guaranteed; I don't guarantee success as being absolutely certain. I'd say luck changes the odds, but there is some definite control on the part of the individual.
 
 Go forth, then, and do great work!
-
-[← Back](https://subcults.com/)
